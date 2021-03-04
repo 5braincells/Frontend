@@ -1,25 +1,61 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Button, Navbar, Nav } from 'react-bootstrap'
 
-function App() {
+import './index.css'
+
+import Landing from './Landing'
+import LogIn from './LogIn'
+import Register from './Register'
+import Home from './Home'
+
+export default function App() {
+  const [user, setUser] = useState(null)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <Router>
+      <div>
+        <Navbar bg='dark' variant='dark' expand='sm' fixed='top'>
+          <Navbar.Brand href='/'>Studyrooms</Navbar.Brand>
+          <Navbar.Toggle aria-controls='basic-navbar-nav' />
+          <Navbar.Collapse id='basic-navbar-nav'>
+            <Nav className='mr-auto'>
+              <Nav.Link href='/home'>Home</Nav.Link>
+            </Nav>
+            {/* {user ? (
+              <> */}
+            <Button href='/register' variant='dark'>
+              Register
+            </Button>
+            <Button href='/login' variant='dark'>
+              Log In
+            </Button>
+            {/* </>
+            ) : (
+              <Button href='/' variant='dark'>
+                Log Out
+              </Button>
+            )} */}
+          </Navbar.Collapse>
+        </Navbar>
 
-export default App;
+        {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+        <Switch>
+          <Route exact path='/'>
+            <Landing />
+          </Route>
+          <Route exact path='/register'>
+            <Register />
+          </Route>
+          <Route exact path='/login'>
+            <LogIn />
+          </Route>
+          <Route exact path='/home'>
+            <Home />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+  )
+}
