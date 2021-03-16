@@ -1,19 +1,26 @@
-import React from 'react'
-import { useHistory } from 'react-router-dom'
+import React, { useState } from 'react'
+import { useHistory, Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import { Col, Form, Button, Container } from 'react-bootstrap'
+import { Form, Button, Container } from 'react-bootstrap'
+import { useDispatch } from 'react-redux'
 // import axios from 'axios'
 
 export default function Register() {
   const { register, handleSubmit, errors } = useForm()
+  const [remember, setRemember] = useState(false)
+  const history = useHistory()
+  const dispatch = useDispatch()
+
+  const handleChange = () => setRemember(!remember)
 
   const onSubmit = data => {
     // send data to server
 
+    const res = { user: {}, token: '' }
+    dispatch({ type: 'SIGNING', jwt: res, remember })
+
     history.push('/home')
   }
-
-  const history = useHistory()
 
   return (
     <Container>
@@ -28,7 +35,7 @@ export default function Register() {
             ref={register({ required: true })}
           />
           {errors.email && errors.email.type === 'required' && (
-            <Form.Text className='formError'>This is required</Form.Text>
+            <Form.Text className='form-error'>This is required</Form.Text>
           )}
         </Form.Group>
         <Form.Group controlId='formPassword'>
@@ -39,16 +46,24 @@ export default function Register() {
             ref={register({ required: true })}
           />
           {errors.password && errors.password.type === 'required' && (
-            <Form.Text className='formError'>This is required</Form.Text>
+            <Form.Text className='form-error'>This is required</Form.Text>
           )}
         </Form.Group>
-        <Form.Group controlId='formBasicCheckbox'>
-          <Form.Check type='checkbox' label='Remember me' />
+        <Form.Group>
+          <Form.Check
+            type='checkbox'
+            label='Remember me'
+            onChange={handleChange}
+          />
         </Form.Group>
         <Button block variant='primary' type='submit'>
           Log In
         </Button>
       </Form>
+      <br />
+      <p>
+        Don't have an account? <Link to='/register'>Register</Link>
+      </p>
     </Container>
   )
 }

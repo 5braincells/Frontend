@@ -1,59 +1,36 @@
-import React, { useState } from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { Button, Navbar, Nav } from 'react-bootstrap'
+import React from 'react'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 import './index.css'
-
-import Landing from './Landing'
-import LogIn from './LogIn'
-import Register from './Register'
-import Home from './Home'
+import Header from './core/Header'
+import { Home, Landing, LogIn, Register, Error } from './pages'
 
 export default function App() {
-  const [user, setUser] = useState(null)
+  const user = useSelector(state => state?.jwt?.user)
 
   return (
     <Router>
       <div>
-        <Navbar bg='dark' variant='dark' expand='sm' fixed='top'>
-          <Navbar.Brand href='/'>Studyrooms</Navbar.Brand>
-          <Navbar.Toggle aria-controls='basic-navbar-nav' />
-          <Navbar.Collapse id='basic-navbar-nav'>
-            <Nav className='mr-auto'>
-              <Nav.Link href='/home'>Home</Nav.Link>
-            </Nav>
-            {/* {user ? (
-              <> */}
-            <Button href='/register' variant='dark'>
-              Register
-            </Button>
-            <Button href='/login' variant='dark'>
-              Log In
-            </Button>
-            {/* </>
-            ) : (
-              <Button href='/' variant='dark'>
-                Log Out
-              </Button>
-            )} */}
-          </Navbar.Collapse>
-        </Navbar>
+        <Header />
 
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
         <Switch>
-          <Route exact path='/'>
-            <Landing />
-          </Route>
-          <Route exact path='/register'>
-            <Register />
-          </Route>
-          <Route exact path='/login'>
-            <LogIn />
-          </Route>
-          <Route exact path='/home'>
-            <Home />
-          </Route>
+          <Route exact path='/' component={Landing} />
+          {user ? (
+            <Route exact path='/home' component={Home} />
+          ) : (
+            <>
+              <Route exact path='/register' component={Register} />
+              <Route exact path='/login' component={LogIn} />
+              <Redirect to='/login' />
+            </>
+          )}
+          <Route path='' component={Error} />
         </Switch>
       </div>
     </Router>
