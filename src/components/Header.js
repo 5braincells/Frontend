@@ -7,8 +7,7 @@ import { Link } from 'react-router-dom'
 export default function Header() {
   const history = useHistory()
   const dispatch = useDispatch()
-  const user = useSelector(state => state?.jwt?.user)
-  console.log(user)
+  const user = useSelector(state => state?.jwt)
 
   const logOut = e => {
     dispatch({ type: 'UNSIGNING' })
@@ -23,7 +22,12 @@ export default function Header() {
       <Navbar.Toggle aria-controls='basic-navbar-nav' />
       <Navbar.Collapse id='basic-navbar-nav'>
         <Nav className='mr-auto'>
-          <Link to='/home'>Home</Link>
+          <Link to='/home' style={{ margin: '0 10px' }}>
+            Home
+          </Link>
+          <Link to='/categories' style={{ margin: '0 10px' }}>
+            Categories
+          </Link>
         </Nav>
         <Nav>
           {user ? (

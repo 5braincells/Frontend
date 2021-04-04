@@ -3,7 +3,9 @@ import { useHistory, Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { Form, Button, Container } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
-// import axios from 'axios'
+import axios from 'axios'
+
+const ip = process.env.REACT_APP_IP
 
 export default function Register() {
   const { register, handleSubmit, errors } = useForm()
@@ -14,12 +16,17 @@ export default function Register() {
   const handleChange = () => setRemember(!remember)
 
   const onSubmit = data => {
-    // send data to server
+    const apidata = { userData: data }
 
-    const res = { user: {}, token: '' }
-    dispatch({ type: 'SIGNING', jwt: res, remember })
-
-    history.push('/home')
+    axios
+      .post(ip + '/login', apidata)
+      .then(response => {
+        if (response.status === 200) {
+          dispatch({ type: 'SIGNING', jwt: response.data.jwt, remember })
+          history.push('/home')
+        }
+      })
+      .catch(e => console.log(e))
   }
 
   return (
@@ -62,7 +69,10 @@ export default function Register() {
       </Form>
       <br />
       <p>
-        Don't have an account? <Link to='/register'>Register</Link>
+        Don't have an account?{' '}
+        <Link to='/register' className='custom-a'>
+          Register
+        </Link>
       </p>
     </Container>
   )

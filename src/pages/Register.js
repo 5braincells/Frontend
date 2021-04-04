@@ -3,7 +3,9 @@ import { useHistory } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { Col, Form, Button, Container } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
-// import axios from 'axios'
+import axios from 'axios'
+
+const ip = process.env.REACT_APP_IP
 
 export default function Register() {
   const [password, setPassword] = useState('')
@@ -13,12 +15,17 @@ export default function Register() {
   const dispatch = useDispatch()
 
   const onSubmit = data => {
-    // send data to server
+    const apidata = { userData: data }
 
-    const res = { user: {}, token: '' }
-    dispatch({ type: 'SIGNING', jwt: res })
-
-    history.push('/home')
+    axios
+      .post(ip + '/register', apidata)
+      .then(response => {
+        if (response.status === 200) {
+          dispatch({ type: 'SIGNING', jwt: response.data.jwt })
+          history.push('/home')
+        }
+      })
+      .catch(e => console.log(e))
   }
 
   const arePasswordsTheSame = value => {
@@ -57,9 +64,11 @@ export default function Register() {
           </Form.Group>
         </Form.Row>
         <Form.Row>
-          <Form.Group as={Col} xs={12} sm={6} controlId='formClass'>
-            <Form.Control name='class' as='select'>
-              <option value='0'>Clasa...</option>
+          <Form.Group as={Col} xs={12} sm={6} controlId='formGrade'>
+            <Form.Control
+              name='grade'
+              as='select'
+              ref={register({ required: true })}>
               <option value='9'>Clasa a 9-a</option>
               <option value='10'>Clasa a 10-a</option>
               <option value='11'>Clasa a 11-a</option>

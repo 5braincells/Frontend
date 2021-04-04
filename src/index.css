@@ -1,3 +1,10 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  overflow: hidden;
+}
+
 .container {
   height: 100vh;
   display: flex;
@@ -11,14 +18,59 @@
 }
 
 a {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif,
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  text-decoration: none;
+  color: white;
+}
+a:hover {
   text-decoration: none;
   color: white;
 }
 
-a:hover {
-  text-decoration: none;
-  color: white;
+.custom-a {
+  color: lightseagreen;
+}
+.custom-a:hover {
+  color: lightskyblue;
+}
+
+.chatbar-container {
+  background-color: #343a40;
+  height: 100%;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  border-top: 1px solid gray;
+  border-right: 1px solid gray;
+}
+.chatbar-container::-webkit-scrollbar-track {
+  background: #343a40;
+}
+.chatbar-container::-webkit-scrollbar-thumb {
+  background: #343a40;
+}
+.chatbar-container:hover::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 100%;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
