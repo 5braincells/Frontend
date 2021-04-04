@@ -1,59 +1,37 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { Button, Navbar, Nav } from 'react-bootstrap'
 
 import './index.css'
-
-import Landing from './Landing'
-import LogIn from './LogIn'
-import Register from './Register'
-import Home from './Home'
+import Header from './components/Header'
+import PrivateRoute from './components/PrivateRoute'
+import {
+  Chatroom,
+  Categories,
+  Error,
+  Home,
+  Landing,
+  LogIn,
+  Register,
+} from './pages'
 
 export default function App() {
-  const [user, setUser] = useState(null)
-
   return (
     <Router>
       <div>
-        <Navbar bg='dark' variant='dark' expand='sm' fixed='top'>
-          <Navbar.Brand href='/'>Studyrooms</Navbar.Brand>
-          <Navbar.Toggle aria-controls='basic-navbar-nav' />
-          <Navbar.Collapse id='basic-navbar-nav'>
-            <Nav className='mr-auto'>
-              <Nav.Link href='/home'>Home</Nav.Link>
-            </Nav>
-            {/* {user ? (
-              <> */}
-            <Button href='/register' variant='dark'>
-              Register
-            </Button>
-            <Button href='/login' variant='dark'>
-              Log In
-            </Button>
-            {/* </>
-            ) : (
-              <Button href='/' variant='dark'>
-                Log Out
-              </Button>
-            )} */}
-          </Navbar.Collapse>
-        </Navbar>
-
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
+        <Header />
         <Switch>
-          <Route exact path='/'>
-            <Landing />
-          </Route>
-          <Route exact path='/register'>
-            <Register />
-          </Route>
-          <Route exact path='/login'>
-            <LogIn />
-          </Route>
-          <Route exact path='/home'>
-            <Home />
-          </Route>
+          <Route exact path='/' component={Landing} />
+          <Route exact path='/register' component={Register} />
+          <Route exact path='/login' component={LogIn} />
+
+          <PrivateRoute exact path='/home' component={Home} />
+          <PrivateRoute exact path='/categories' component={Categories} />
+          <PrivateRoute
+            exact
+            path='/categories/:category'
+            component={Chatroom}
+          />
+          <Route path='' component={Error} />
         </Switch>
       </div>
     </Router>

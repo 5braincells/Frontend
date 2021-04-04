@@ -2,30 +2,39 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { Col, Form, Button, Container } from 'react-bootstrap'
-import { isElementOfType } from 'react-dom/test-utils'
-// import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import axios from 'axios'
+
+const ip = process.env.REACT_APP_IP
 
 export default function Register() {
   const [password, setPassword] = useState('')
   const [type, setType] = useState('password')
   const { register, handleSubmit, errors } = useForm()
+  const history = useHistory()
+  const dispatch = useDispatch()
 
   const onSubmit = data => {
-    // send data to server
+    const apidata = { userData: data }
 
-    history.push('/home')
+    axios
+      .post(ip + '/register', apidata)
+      .then(response => {
+        if (response.status === 200) {
+          dispatch({ type: 'SIGNING', jwt: response.data.jwt })
+          history.push('/home')
+        }
+      })
+      .catch(e => console.log(e))
   }
 
   const arePasswordsTheSame = value => {
-    if (password !== value) return false
-    return true
+    return password === value
   }
 
   const showHide = e => {
     setType(type === 'password' ? 'text' : 'password')
   }
-
-  const history = useHistory()
 
   return (
     <Container className='container'>
@@ -40,7 +49,7 @@ export default function Register() {
               ref={register({ required: true })}
             />
             {errors.firstName && errors.firstName.type === 'required' && (
-              <Form.Text className='formError'>This is required</Form.Text>
+              <Form.Text className='form-error'>This is required</Form.Text>
             )}
           </Form.Group>
           <Form.Group as={Col} xs={12} sm={6} controlId='formLastName'>
@@ -50,8 +59,21 @@ export default function Register() {
               ref={register({ required: true })}
             />
             {errors.lastName && errors.lastName.type === 'required' && (
-              <Form.Text className='formError'>This is required</Form.Text>
+              <Form.Text className='form-error'>This is required</Form.Text>
             )}
+          </Form.Group>
+        </Form.Row>
+        <Form.Row>
+          <Form.Group as={Col} xs={12} sm={6} controlId='formGrade'>
+            <Form.Control
+              name='grade'
+              as='select'
+              ref={register({ required: true })}>
+              <option value='9'>Clasa a 9-a</option>
+              <option value='10'>Clasa a 10-a</option>
+              <option value='11'>Clasa a 11-a</option>
+              <option value='12'>Clasa a 12-a</option>
+            </Form.Control>
           </Form.Group>
         </Form.Row>
         <Form.Group controlId='formEmail'>
@@ -62,7 +84,7 @@ export default function Register() {
             ref={register({ required: true })}
           />
           {errors.email && errors.email.type === 'required' && (
-            <Form.Text className='formError'>This is required</Form.Text>
+            <Form.Text className='form-error'>This is required</Form.Text>
           )}
         </Form.Group>
         <Form.Row>
@@ -75,7 +97,7 @@ export default function Register() {
               onChange={event => setPassword(event.target.value)}
             />
             {errors.password && errors.password.type === 'required' && (
-              <Form.Text className='formError'>This is required</Form.Text>
+              <Form.Text className='form-error'>This is required</Form.Text>
             )}
           </Form.Group>
           <Form.Group as={Col} xs={12} sm={6} controlId='formPassword2'>
@@ -86,10 +108,10 @@ export default function Register() {
               ref={register({ required: true, validate: arePasswordsTheSame })}
             />
             {errors.password2 && errors.password2.type === 'required' && (
-              <Form.Text className='formError'>This is required</Form.Text>
+              <Form.Text className='form-error'>This is required</Form.Text>
             )}
             {errors.password2 && errors.password2.type === 'validate' && (
-              <Form.Text className='formError'>
+              <Form.Text className='form-error'>
                 The passwords must be the same
               </Form.Text>
             )}

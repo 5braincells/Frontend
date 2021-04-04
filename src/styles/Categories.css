@@ -1,0 +1,25 @@
+.categories-container {
+  padding: 2rem;
+  padding-top: 56px;
+  display: flex;
+  overflow-y: scroll;
+  justify-content: center;
+}
+
+.categories-item-title {
+  padding: 5px 10px;
+  color: white;
+}
+
+.categories-item {
+  background-color: #343a40;
+  width: 100%;
+  border-radius: 10px;
+  margin: 5px 0px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+}
+.categories-item:hover {
+  opacity: 90%;
+}
