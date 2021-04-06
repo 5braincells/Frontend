@@ -20,6 +20,7 @@ export default function Message({ message }) {
     </div>
   ) : (
     <img
+      style={{ width: '50vw', height: 'auto' }}
       src={process.env.REACT_APP_IP_PUBLIC + '/images/' + message.filename}
       alt={message.filename}
     />

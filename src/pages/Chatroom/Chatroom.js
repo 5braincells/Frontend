@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Form } from 'react-bootstrap'
+import { Button, ButtonGroup, Dropdown, Form } from 'react-bootstrap'
 import { useParams } from 'react-router'
 
 import axios from 'axios'
@@ -71,16 +71,19 @@ export default function Chatroom() {
 
   const sendImage = event => {
     const formData = new FormData()
-    const messageData = {
-      type: 'img',
-      category: category,
-    }
 
-    formData.append('messageData', messageData)
     formData.append('image', event.target.files[0])
+    formData.append('type', 'img')
+    formData.append('category', category)
     formData.append('userID', userID)
     formData.append('jwt', localStorage.getItem('jwt'))
+
+    axios
+      .post(process.env.REACT_APP_IP + '/sendPicture', formData)
+      .then(response => console.log(response))
   }
+
+  const sendFile = event => {}
 
   const messageList = messages.map(message => (
     <Message message={message} key={message._id} />
@@ -92,30 +95,72 @@ export default function Chatroom() {
         <ChatroomHeader chatroom={chatroom} />
         <div className='message-list'>{messageList}</div>
         <Form className='send-box'>
-          <label style={{ marginBottom: '0px' }} htmlFor='upload-button'>
-            <div
-              className='button'
-              style={{
-                cursor: 'pointer',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-              variant='light'>
+          <Dropdown as={ButtonGroup}>
+            <Dropdown.Toggle className='button dropdown-toggle'>
               <FontAwesomeIcon
                 style={{ paddingRight: '2px' }}
                 color='#fff'
-                icon={Icons.faImage}
+                icon={Icons.faPaperclip}
               />
-            </div>
-          </label>
-          <input
-            type='file'
-            accept='image/*'
-            id='upload-button'
-            style={{ display: 'none' }}
-            onChange={sendImage}
-          />
+            </Dropdown.Toggle>
+            <Dropdown.Menu className='dropdown-menu'>
+              <div className='dropdown-item'>
+                <label
+                  style={{ marginBottom: '0px' }}
+                  htmlFor='image-upload-button'>
+                  <div
+                    className='button'
+                    style={{
+                      cursor: 'pointer',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}
+                    variant='light'>
+                    <FontAwesomeIcon
+                      style={{ paddingRight: '2px' }}
+                      color='#fff'
+                      icon={Icons.faImage}
+                    />
+                  </div>
+                </label>
+                <input
+                  type='file'
+                  accept='image/*'
+                  id='image-upload-button'
+                  style={{ display: 'none' }}
+                  onChange={sendImage}
+                />
+              </div>
+              <div className='dropdown-item'>
+                <label
+                  style={{ marginBottom: '0px' }}
+                  htmlFor='file-upload-button'>
+                  <div
+                    className='button'
+                    style={{
+                      cursor: 'pointer',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}
+                    variant='light'>
+                    <FontAwesomeIcon
+                      style={{ paddingRight: '2px' }}
+                      color='#fff'
+                      icon={Icons.faFile}
+                    />
+                  </div>
+                </label>
+                <input
+                  type='file'
+                  id='file-upload-button'
+                  style={{ display: 'none' }}
+                  onChange={sendImage}
+                />
+              </div>
+            </Dropdown.Menu>
+          </Dropdown>
           <Form.Control
             className='message-input'
             placeholder='Send a message'
