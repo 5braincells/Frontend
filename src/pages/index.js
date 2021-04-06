@@ -1,5 +1,5 @@
-export { default as Chatroom } from './Chatroom'
-export { default as Categories } from './Categories'
+export { default as Chatroom } from './Chatroom/Chatroom'
+export { default as Categories } from './Categories/Categories'
 export { default as Error } from './Error'
 export { default as Home } from './Home'
 export { default as Landing } from './Landing'
