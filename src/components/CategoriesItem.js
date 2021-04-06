@@ -7,7 +7,8 @@ export default function CategoriesItem({ category }) {
 
   const handleClick = () => {
     // navigate to chat
-    history.push('/categories/' + category.name)
+    localStorage.setItem('category', JSON.stringify(category))
+    history.push('/categories/' + category.id)
   }
 
   return (

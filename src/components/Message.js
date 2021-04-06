@@ -5,14 +5,23 @@ export default function Message({ message }) {
   const jwt = jwt_decode(localStorage.getItem('jwt'))
   const userID = jwt.userID
 
-  return (
+  return message.type === 'msg' || message.type === undefined ? (
     <div
       key={message.id}
-      className='message'
+      className={
+        userID === message.author
+          ? 'message message-sent'
+          : 'message message-received'
+      }
       style={{
         alignSelf: userID === message.author ? 'flex-end' : 'flex-start',
       }}>
       <span>{message.message}</span>
     </div>
+  ) : (
+    <img
+      src={process.env.REACT_APP_IP_PUBLIC + '/images/' + message.filename}
+      alt={message.filename}
+    />
   )
 }

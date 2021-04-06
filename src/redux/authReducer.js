@@ -1,4 +1,4 @@
-const authReducer = (state = localStorage.getItem('jwt') || 'null', action) => {
+const authReducer = (state = localStorage.getItem('jwt') || null, action) => {
   const { type, jwt, remember } = action
   switch (type) {
     case 'SIGNING':
