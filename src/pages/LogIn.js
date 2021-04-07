@@ -22,7 +22,12 @@ export default function Register() {
       .post(ip + '/login', apidata)
       .then(response => {
         if (response.status === 200) {
-          dispatch({ type: 'SIGNING', jwt: response.data.jwt, remember })
+          localStorage.setItem('remember', remember)
+          dispatch({
+            type: 'SIGNING',
+            jwt: response.data.jwt,
+            remember: remember,
+          })
           history.push('/home')
         }
       })
@@ -30,7 +35,7 @@ export default function Register() {
   }
 
   return (
-    <Container>
+    <Container className='page-container'>
       <h3>Log in to Studyrooms</h3>
       <br />
       <Form onSubmit={handleSubmit(onSubmit)}>

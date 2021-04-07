@@ -6,7 +6,7 @@ import * as Icons from '@fortawesome/free-solid-svg-icons'
 
 export default function Home() {
   return (
-    <Container className='container'>
+    <Container className='page-container'>
       <h1>
         Welcome to the <FontAwesomeIcon color='#212529' icon={Icons.faHome} />{' '}
         page!

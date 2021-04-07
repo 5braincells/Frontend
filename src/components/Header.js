@@ -10,7 +10,8 @@ export default function Header() {
   const user = useSelector(state => state?.jwt)
 
   const logOut = e => {
-    dispatch({ type: 'UNSIGNING' })
+    const remember = JSON.parse(localStorage.getItem('remember'))
+    dispatch({ type: 'UNSIGNING', remember: remember })
     history.push('/')
   }
 

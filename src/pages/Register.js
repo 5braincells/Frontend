@@ -21,7 +21,8 @@ export default function Register() {
       .post(ip + '/register', apidata)
       .then(response => {
         if (response.status === 200) {
-          dispatch({ type: 'SIGNING', jwt: response.data.jwt })
+          localStorage.setItem('remember', false)
+          dispatch({ type: 'SIGNING', jwt: response.data.jwt, remember: false })
           history.push('/home')
         }
       })
@@ -37,7 +38,7 @@ export default function Register() {
   }
 
   return (
-    <Container className='container'>
+    <Container className='page-container'>
       <h3>Create your Studyrooms account</h3>
       <br />
       <Form onSubmit={handleSubmit(onSubmit)}>

@@ -27,11 +27,11 @@
 
 .message-list {
   background-color: #343a40;
-  height: calc(100vh - 114px);
   padding: 10px;
   display: flex;
   flex-direction: column-reverse;
   overflow: scroll;
+  position: relative;
 }
 .message-list::-webkit-scrollbar-track {
   background: #343a40;
@@ -47,6 +47,12 @@
   margin-bottom: 5px;
   color: white;
   box-shadow: 0px 0px 8px #22262a;
+
+  word-break: break-all;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  line-break: anywhere;
+  max-width: 50vw;
 }
 .message-received {
   background: linear-gradient(to bottom, #73808c, #5c6670);
@@ -105,9 +111,7 @@
   padding: 0.33rem 0px;
   text-align: left;
 }
-.dropdown-item:hover {
-  background-color: transparent;
-}
+.dropdown-item:hover,
 .dropdown-item:focus {
   background-color: transparent;
 }
