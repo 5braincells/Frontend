@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import { Button, ButtonGroup, Dropdown, Form } from 'react-bootstrap'
 import { useParams } from 'react-router'
@@ -47,8 +48,10 @@ export default function Chatroom() {
     })
   }, [])
 
-  const jwt = jwt_decode(localStorage.getItem('jwt'))
-  const userID = jwt.userID
+  const jwt = localStorage.getItem('jwt') || sessionStorage.getItem('jwt')
+  console.log(jwt)
+  const jwtDecoded = jwt_decode(jwt)
+  const userID = jwtDecoded.userID
 
   const sendMessage = event => {
     if (message) {
@@ -59,7 +62,7 @@ export default function Chatroom() {
           category: category,
         },
         userID: userID,
-        jwt: localStorage.getItem('jwt'),
+        jwt: jwt,
       }
 
       axios.post(ip + '/sendMessage', apidata2)
@@ -76,17 +79,25 @@ export default function Chatroom() {
     formData.append('type', 'img')
     formData.append('category', category)
     formData.append('userID', userID)
-    formData.append('jwt', localStorage.getItem('jwt'))
+    formData.append('jwt', jwt)
 
-    axios
-      .post(process.env.REACT_APP_IP + '/sendPicture', formData)
-      .then(response => console.log(response))
+    axios.post(process.env.REACT_APP_IP + '/sendPicture', formData)
   }
 
-  const sendFile = event => {}
+  const sendFile = event => {
+    const formData = new FormData()
 
-  const messageList = messages.map(message => (
-    <Message message={message} key={message._id} />
+    formData.append('file', event.target.files[0])
+    formData.append('type', 'file')
+    formData.append('category', category)
+    formData.append('userID', userID)
+    formData.append('jwt', jwt)
+
+    axios.post(process.env.REACT_APP_IP + '/sendFile', formData)
+  }
+
+  const messageList = messages.map((message, index) => (
+    <Message message={message} key={index} />
   ))
 
   return (
@@ -156,7 +167,7 @@ export default function Chatroom() {
                   type='file'
                   id='file-upload-button'
                   style={{ display: 'none' }}
-                  onChange={sendImage}
+                  onChange={sendFile}
                 />
               </div>
             </Dropdown.Menu>
