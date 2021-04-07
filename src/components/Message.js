@@ -1,26 +1,45 @@
-import React from 'react'
-import jwt_decode from 'jwt-decode'
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 
+import jwt_decode from 'jwt-decode'
+import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as Icons from '@fortawesome/free-solid-svg-icons'
+
 import ImageModal from './ImageModal'
 
 export default function Message({ message }) {
-  const jwt = localStorage.getItem('jwt') || sessionStorage.getItem('jwt')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const jwt = useSelector(state => state.jwt.jwt)
   const jwtDecoded = jwt_decode(jwt)
   const userID = jwtDecoded.userID
 
   const [modalShow, setModalShow] = React.useState(false)
 
+  useEffect(() => {
+    axios
+      .get(process.env.REACT_APP_IP + '/profile/' + message.author)
+      .then(response => {
+        setFirstName(response.data.firstName)
+        setLastName(response.data.lastName)
+      })
+  }, [])
+
   const msgDate = new Date(message.time)
   const thisDate = new Date()
 
-  var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
-  let dateString;
+  let dateString
 
-  dateString = (!(msgDate.getDate() === thisDate.getDate()) ? days[msgDate.getDay()] + ' ' : '') + msgDate.getHours() + ':' + msgDate.getMinutes()
-
+  dateString =
+    (!(msgDate.getDate() === thisDate.getDate())
+      ? days[msgDate.getDay()] + ' '
+      : '') +
+    msgDate.getHours() +
+    ':' +
+    msgDate.getMinutes()
 
   return (
     <div
@@ -28,10 +47,10 @@ export default function Message({ message }) {
       className={`message ${
         userID === message.author ? 'message-sent' : 'message-received'
       }`}>
-        <div className="message-info">
-          <span className="message-username">name</span>
-          <span className="message-date">{dateString}</span>
-        </div>
+      <div className='message-info'>
+        <span className='message-username'>{firstName + ' ' + lastName}</span>
+        <span className='message-date'>{dateString}</span>
+      </div>
       {message.type === 'msg' || message.type === undefined ? (
         <div class='message-text'>{message.message}</div>
       ) : message.type === 'img' ? (

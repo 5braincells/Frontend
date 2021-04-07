@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { Form, Button, Container } from 'react-bootstrap'
 import { useHistory, Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import { Form, Button, Container } from 'react-bootstrap'
-import { useDispatch } from 'react-redux'
+
 import axios from 'axios'
 
 const ip = process.env.REACT_APP_IP
@@ -26,6 +27,11 @@ export default function Register() {
           dispatch({
             type: 'SIGNING',
             jwt: response.data.jwt,
+            user: {
+              firstName: response.data.firstName,
+              lastName: response.data.lastName,
+              grade: response.data.grade,
+            },
             remember: remember,
           })
           history.push('/home')

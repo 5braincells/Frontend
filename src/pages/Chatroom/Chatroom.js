@@ -1,17 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { Button, ButtonGroup, Dropdown, Form } from 'react-bootstrap'
 import { useParams } from 'react-router'
 
 import axios from 'axios'
 import jwt_decode from 'jwt-decode'
 import Pusher from 'pusher-js'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import * as Icons from '@fortawesome/free-solid-svg-icons'
 
 import './Chatroom.css'
 import ChatroomHeader from '../../components/ChatroomHeader'
 import Message from '../../components/Message'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import * as Icons from '@fortawesome/free-solid-svg-icons'
 
 const ip = process.env.REACT_APP_IP
 
@@ -48,8 +49,7 @@ export default function Chatroom() {
     })
   }, [])
 
-  const jwt = localStorage.getItem('jwt') || sessionStorage.getItem('jwt')
-  console.log(jwt)
+  const jwt = useSelector(state => state.jwt.jwt)
   const jwtDecoded = jwt_decode(jwt)
   const userID = jwtDecoded.userID
 
@@ -100,12 +100,12 @@ export default function Chatroom() {
     <Message message={message} key={index} />
   ))
 
-  let vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
+  let vh = window.innerHeight * 0.01
+  document.documentElement.style.setProperty('--vh', `${vh}px`)
   window.addEventListener('resize', () => {
-    let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-  });
+    let vh = window.innerHeight * 0.01
+    document.documentElement.style.setProperty('--vh', `${vh}px`)
+  })
 
   return (
     <div className='chatroom-container'>
