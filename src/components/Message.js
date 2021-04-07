@@ -14,22 +14,19 @@ export default function Message({ message }) {
       key={message.id}
       className={`message ${
         userID === message.author ? 'message-sent' : 'message-received'
-      }`}
-      style={{
-        alignSelf: userID === message.author ? 'flex-end' : 'flex-start',
-      }}>
+      }`}>
       {message.type === 'msg' || message.type === undefined ? (
-        <span>{message.message}</span>
+        <div class="message-text">{message.message}</div>
       ) : message.type === 'img' ? (
         <img
-          className='w-100'
+          className='message-image'
           src={process.env.REACT_APP_IP_PUBLIC + '/files/' + message.filename}
           alt={message.filename}
         />
       ) : (
-        <>
+        <div class="message-file">
           <FontAwesomeIcon
-            style={{ paddingRight: '2px', height: '1.2rem', width: '1.2rem' }}
+            style={{ marginRight: '4px', height: '1.2rem', width: '1.2rem' }}
             color='#fff'
             icon={Icons.faFile}
           />
@@ -42,7 +39,7 @@ export default function Message({ message }) {
             rel='noreferrer'>
             {message.filename}
           </a>
-        </>
+        </div>
       )}
     </div>
   )

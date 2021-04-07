@@ -14,7 +14,12 @@ export default function Chatroom({ chatroom }) {
 
   return (
     <div className='chatroom-header'>
-      <button style={{ all: 'unset', cursor: 'pointer' }} onClick={handleClick}>
+      <button style={{ 
+        border: 'none', 
+        outline: 'none', 
+        background: 'transparent', 
+        padding: '0', 
+        cursor: 'pointer' }} onClick={handleClick}>
         <FontAwesomeIcon
           className='mr-3 ml-1'
           color='#fff'
