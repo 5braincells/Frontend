@@ -54,6 +54,17 @@
 .message:hover {
   box-shadow: 0px 0px 8px #5b6671;
 }
+.message-info {
+  font-size: 10pt;
+  margin-bottom: 2px;
+}
+.message-info .message-name {
+  display: inline-block;
+}
+.message-info .message-date {
+  margin-left: 6px;
+  float: right;
+}
 .message-received {
   background: linear-gradient(to bottom, #73808c, #5c6670);
   border-top-left-radius: 0px;
@@ -65,7 +76,7 @@
   align-self: flex-end;
 }
 .message-text {
-  margin: 0px 4px;
+  /* margin: 0px 4px; */
 }
 .message-image {
   width: 100%;

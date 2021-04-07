@@ -9,7 +9,18 @@ export default function Message({ message }) {
   const jwt = localStorage.getItem('jwt') || sessionStorage.getItem('jwt')
   const jwtDecoded = jwt_decode(jwt)
   const userID = jwtDecoded.userID
+
   const [modalShow, setModalShow] = React.useState(false)
+
+  const msgDate = new Date(message.time)
+  const thisDate = new Date()
+
+  var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+  let dateString;
+
+  dateString = (!(msgDate.getDate() === thisDate.getDate()) ? days[msgDate.getDay()] + ' ' : '') + msgDate.getHours() + ':' + msgDate.getMinutes()
+
 
   return (
     <div
@@ -17,6 +28,10 @@ export default function Message({ message }) {
       className={`message ${
         userID === message.author ? 'message-sent' : 'message-received'
       }`}>
+        <div className="message-info">
+          <span className="message-username">name</span>
+          <span className="message-date">{dateString}</span>
+        </div>
       {message.type === 'msg' || message.type === undefined ? (
         <div class='message-text'>{message.message}</div>
       ) : message.type === 'img' ? (
