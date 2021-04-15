@@ -1,14 +1,16 @@
 import React from 'react'
 import { useHistory } from 'react-router'
 import { Col } from 'react-bootstrap'
+import { useSelector } from 'react-redux'
 
 export default function CategoriesItem({ category }) {
   const history = useHistory()
+  const user = useSelector(state => state.jwt.user)
 
   const handleClick = () => {
     // navigate to chat
     localStorage.setItem('category', JSON.stringify(category))
-    history.push('/categories/' + category.id)
+    history.push('/categories/' + category.id + user.grade)
   }
 
   return (

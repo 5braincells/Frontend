@@ -22,7 +22,16 @@ export default function Register() {
       .then(response => {
         if (response.status === 200) {
           localStorage.setItem('remember', false)
-          dispatch({ type: 'SIGNING', jwt: response.data.jwt, remember: false })
+          dispatch({
+            type: 'SIGNING',
+            jwt: response.data.jwt,
+            user: {
+              firstName: response.data.firstName,
+              lastName: response.data.lastName,
+              grade: response.data.grade,
+            },
+            remember: false,
+          })
           history.push('/home')
         }
       })
