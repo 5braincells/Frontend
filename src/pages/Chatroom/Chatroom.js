@@ -49,7 +49,7 @@ export default function Chatroom() {
     })
   }, [])
 
-  const jwt = useSelector(state => state.jwt.jwt)
+  const jwt = useSelector(state => state?.jwt?.jwt)
   const jwtDecoded = jwt_decode(jwt)
   const userID = jwtDecoded.userID
 

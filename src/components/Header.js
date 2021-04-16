@@ -7,12 +7,12 @@ import { Link } from 'react-router-dom'
 export default function Header() {
   const history = useHistory()
   const dispatch = useDispatch()
-  const user = useSelector(state => state?.jwt)
+  const user = useSelector(state => state?.jwt?.user)
 
   const logOut = e => {
+    history.push('/')
     const remember = JSON.parse(localStorage.getItem('remember'))
     dispatch({ type: 'UNSIGNING', remember: remember })
-    history.push('/')
   }
 
   return (

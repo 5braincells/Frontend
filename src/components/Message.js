@@ -11,11 +11,10 @@ import ImageModal from './ImageModal'
 export default function Message({ message }) {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
-  const jwt = useSelector(state => state.jwt.jwt)
+  const jwt = useSelector(state => state?.jwt?.jwt)
   const jwtDecoded = jwt_decode(jwt)
   const userID = jwtDecoded.userID
-
-  const [modalShow, setModalShow] = React.useState(false)
+  const [modalShow, setModalShow] = useState(false)
 
   useEffect(() => {
     axios
@@ -29,11 +28,9 @@ export default function Message({ message }) {
   const msgDate = new Date(message.time)
   const thisDate = new Date()
 
-  var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+  const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
-  let dateString
-
-  dateString =
+  const dateString =
     (!(msgDate.getDate() === thisDate.getDate())
       ? days[msgDate.getDay()] + ' '
       : '') +
@@ -52,7 +49,7 @@ export default function Message({ message }) {
         <span className='message-date'>{dateString}</span>
       </div>
       {message.type === 'msg' || message.type === undefined ? (
-        <div class='message-text'>{message.message}</div>
+        <div className='message-text'>{message.message}</div>
       ) : message.type === 'img' ? (
         <>
           <img

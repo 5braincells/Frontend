@@ -44,7 +44,7 @@ export default function Categories() {
     {
       id: 'geografie',
       picture:
-        'https://i.dlpng.com/static/png/6279764-globe-clipart-transparent-background-clipart-world-transparent-clipart-transparent-background-840_610_preview.png',
+        'https://www.globe.gov/o/gov.globe.home.explorelearnearth.web/images/learn-earth-system-clean.png',
       name: 'Geografie',
     },
     {
