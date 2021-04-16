@@ -11,11 +11,10 @@ import ImageModal from './ImageModal'
 export default function Message({ message }) {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
-  const jwt = useSelector(state => state.jwt.jwt)
+  const jwt = useSelector(state => state?.jwt?.jwt)
   const jwtDecoded = jwt_decode(jwt)
   const userID = jwtDecoded.userID
-
-  const [modalShow, setModalShow] = React.useState(false)
+  const [modalShow, setModalShow] = useState(false)
 
   useEffect(() => {
     axios
