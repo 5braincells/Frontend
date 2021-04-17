@@ -6,14 +6,15 @@ export default function ImageModal(props) {
     <Modal
       {...props}
       dialogClassName='modal-100w modal-100h'
+      className='image-modal'
       size='lg'
       aria-labelledby='contained-modal-title-vcenter'
       centered>
       <img
-        style={{ backgroundColor: '#454d54' }}
+        style={{ backgroundColor: '#454d5444' }}
         className='modal-image'
         src={props.imgSrc}
-        alt='aaa'
+        alt='Image is not loaded'
       />
     </Modal>
   )

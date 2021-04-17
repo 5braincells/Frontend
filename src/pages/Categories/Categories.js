@@ -61,7 +61,7 @@ export default function Categories() {
 
   return (
     <div className='categories-container'>
-      <Row>{categoriesList}</Row>
+      {categoriesList}
     </div>
   )
 }
