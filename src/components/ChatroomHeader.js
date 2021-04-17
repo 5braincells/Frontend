@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from 'react-router'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as Icons from '@fortawesome/free-solid-svg-icons'
@@ -10,6 +11,11 @@ export default function Chatroom({ chatroom }) {
   const handleClick = event => {
     event.preventDefault()
     history.goBack()
+  }
+
+  const createCall = event => {
+    event.preventDefault()
+    history.push(`/room/${chatroom.id + user.grade}`)
   }
 
   return (
@@ -38,6 +44,18 @@ export default function Chatroom({ chatroom }) {
         style={{ borderRadius: '100px' }}
       />
       <span className='chatroom-header-title'>{chatroom.name}</span>
+      <button
+        style={{
+          border: 'none',
+          outline: 'none',
+          background: 'transparent',
+          padding: '0',
+          cursor: 'pointer',
+        }}
+        className='mr-3 ml-auto'
+        onClick={createCall}>
+        <FontAwesomeIcon color='#fff' icon={Icons.faVideo} size='lg' />
+      </button>
     </div>
   )
 }
