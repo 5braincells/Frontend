@@ -43,7 +43,7 @@ a:hover {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #fff;
+  background: transparent;
 }
 
 /* Handle */
@@ -52,7 +52,29 @@ a:hover {
   border-radius: 10px;
 }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
+.blank-button {
+  background: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+}
+
+.header-link {
+  margin: 0px 6px;
+  transition: all 0.1s;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+.header-link:hover {
+  background: #00000033;
+  border: 1px solid #00000055;
+}
+.header-link:active {
+  background: #00000055;
+  border: 1px solid #00000088;
 }

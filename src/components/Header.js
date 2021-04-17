@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Navbar, Nav } from 'react-bootstrap'
+import { Navbar, Nav } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { Link } from 'react-router-dom'
@@ -23,24 +23,24 @@ export default function Header() {
       <Navbar.Toggle aria-controls='basic-navbar-nav' />
       <Navbar.Collapse id='basic-navbar-nav'>
         <Nav className='mr-auto'>
-          <Link to='/home' style={{ margin: '0 10px' }}>
+          <Link to='/home' className="header-link">
             Home
           </Link>
-          <Link to='/categories' style={{ margin: '0 10px' }}>
+          <Link to='/categories' className="header-link">
             Categories
           </Link>
         </Nav>
         <Nav>
           {jwt ? (
-            <Button variant='dark' onClick={logOut}>
+            <Link onClick={logOut} className="header-link">
               Log Out
-            </Button>
+            </Link>
           ) : (
             <>
-              <Link to='/register' style={{ margin: '0 10px' }}>
+              <Link to='/register' className="header-link">
                 Register
               </Link>
-              <Link to='/login' style={{ margin: '0 10px' }}>
+              <Link to='/login' className="header-link">
                 Log In
               </Link>
             </>
