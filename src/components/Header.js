@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 export default function Header() {
   const history = useHistory()
   const dispatch = useDispatch()
-  const user = useSelector(state => state?.jwt?.user)
+  const jwt = useSelector(state => state?.jwt?.jwt)
 
   const logOut = e => {
     history.push('/')
@@ -31,7 +31,7 @@ export default function Header() {
           </Link>
         </Nav>
         <Nav>
-          {user ? (
+          {jwt ? (
             <Button variant='dark' onClick={logOut}>
               Log Out
             </Button>

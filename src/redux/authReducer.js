@@ -15,7 +15,7 @@ const authReducer = (
         sessionStorage.setItem('jwt', jwt)
         sessionStorage.setItem('user', JSON.stringify(user))
       }
-      return { jwt: jwt, user: user }
+      return { jwt: jwt, user: JSON.stringify(user) }
     case 'UNSIGNING':
       if (remember) {
         localStorage.removeItem('jwt', jwt)

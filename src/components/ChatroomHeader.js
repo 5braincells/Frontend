@@ -1,12 +1,14 @@
 import React from 'react'
 import { useHistory } from 'react-router'
+import { useSelector } from 'react-redux'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as Icons from '@fortawesome/free-solid-svg-icons'
-import { useHistory } from 'react-router'
 
 export default function Chatroom({ chatroom }) {
   const history = useHistory()
+
+  const user = JSON.parse(useSelector(state => state?.jwt?.user))
 
   const handleClick = event => {
     event.preventDefault()
