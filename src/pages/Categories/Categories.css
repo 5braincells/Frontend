@@ -13,6 +13,11 @@
 .categories-container::-webkit-scrollbar-thumb {
   background: #888;
 }
+@media screen and (max-width: 800px) {
+  .categories-container {
+    max-width: 100%;
+  }
+}
 
 .categories-item-title {
   padding: 5px 10px;
