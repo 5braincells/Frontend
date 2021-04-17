@@ -14,7 +14,7 @@ export default function ImageModal(props) {
         style={{ backgroundColor: '#454d5444' }}
         className='modal-image'
         src={props.imgSrc}
-        alt='Image is not loaded'
+        alt=':('
       />
     </Modal>
   )
