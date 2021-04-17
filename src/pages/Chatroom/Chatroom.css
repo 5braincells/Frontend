@@ -46,7 +46,7 @@
 .message-list {
   padding: 10px;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   overflow: scroll;
 }
 .message-list::-webkit-scrollbar-track {

@@ -19,6 +19,8 @@ const ip = process.env.REACT_APP_IP
 
 let arr = []
 
+let pusher
+
 export default function Chatroom() {
   const { category } = useParams()
   const [messages, setMessages] = useState([])
@@ -32,13 +34,13 @@ export default function Chatroom() {
       .post(ip + '/getMessages', apidata)
       .then(response => {
         if (response.status === 200) {
-          setMessages(response.data.reverse())
+          setMessages(response.data)
           arr = response.data
         }
       })
       .catch(e => console.log(e))
 
-    const pusher = new Pusher(process.env.REACT_APP_KEY, {
+    pusher = new Pusher(process.env.REACT_APP_KEY, {
       cluster: process.env.REACT_APP_CLUSTER,
     })
 
@@ -48,7 +50,12 @@ export default function Chatroom() {
       arr = [data.message, ...arr]
       setMessages(arr)
     })
-  }, [])
+    console.log('ouch')
+
+    return () => {
+      pusher.unsubscribe(category)
+    }
+  }, [category])
 
   const jwt = useSelector(state => state?.jwt?.jwt)
   const jwtDecoded = jwt_decode(jwt)
@@ -110,8 +117,8 @@ export default function Chatroom() {
 
   return (
     <div className='chatroom-page'>
-      <div className="categories-left">
-        <Categories/>
+      <div className='categories-left'>
+        <Categories pusher={pusher} currentCategory={category} />
       </div>
       <div className='chatroom-container'>
         <ChatroomHeader chatroom={chatroom} />

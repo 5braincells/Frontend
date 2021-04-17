@@ -26,9 +26,9 @@
     "react-scripts": "4.0.3",
     "react-visibility-sensor": "^5.1.1",
     "redux": "^4.0.5",
-    "styled-components": "^5.2.3",
     "simple-peer": "^9.11.0",
     "socket.io-client": "^4.0.1",
+    "styled-components": "^5.2.3",
     "web-vitals": "^1.1.0"
   },
   "scripts": {

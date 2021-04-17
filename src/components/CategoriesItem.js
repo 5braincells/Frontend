@@ -1,6 +1,5 @@
 import React from 'react'
 import { useHistory } from 'react-router'
-import { Col } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 
 export default function CategoriesItem({ category }) {
@@ -14,15 +13,8 @@ export default function CategoriesItem({ category }) {
   }
 
   return (
-    <div
-      key={category.id}
-      className='categories-item'
-      onClick={handleClick}>
-      <img
-        src={category.picture}
-        className='categories-image'
-        alt=''
-      />
+    <div key={category.id} className='categories-item' onClick={handleClick}>
+      <img src={category.picture} className='categories-image' alt='' />
       <span className='categories-item-title'>{category.name}</span>
     </div>
   )

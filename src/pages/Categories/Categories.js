@@ -1,5 +1,4 @@
 import React from 'react'
-import { Row } from 'react-bootstrap'
 import CategoriesItem from '../../components/CategoriesItem'
 
 import './Categories.css'
@@ -56,12 +55,8 @@ export default function Categories() {
   ]
 
   const categoriesList = categories.map(category => (
-    <CategoriesItem category={category} key={category.id} />
+    <CategoriesItem key={category.id} category={category} />
   ))
 
-  return (
-    <div className='categories-container'>
-      {categoriesList}
-    </div>
-  )
+  return <div className='categories-container'>{categoriesList}</div>
 }
