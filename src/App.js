@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
+import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css'
 import Header from './components/Header'
 import PrivateRoute from './components/PrivateRoute'
@@ -12,6 +13,7 @@ import {
   Landing,
   LogIn,
   Register,
+  Room,
 } from './pages'
 
 export default function App() {
@@ -26,6 +28,7 @@ export default function App() {
         <PrivateRoute exact path='/home' component={Home} />
         <PrivateRoute exact path='/categories' component={Categories} />
         <PrivateRoute exact path='/categories/:category' component={Chatroom} />
+        <PrivateRoute exact path='/room/:roomID' component={Room} />
         <Route path='' component={Error} />
       </Switch>
     </Router>
