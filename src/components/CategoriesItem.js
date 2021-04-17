@@ -14,19 +14,16 @@ export default function CategoriesItem({ category }) {
   }
 
   return (
-    <Col
-      xl={9}
+    <div
       key={category.id}
-      className='categories-item mr-auto ml-auto'
+      className='categories-item'
       onClick={handleClick}>
       <img
         src={category.picture}
+        className='categories-image'
         alt=''
-        width='56'
-        height='56'
-        style={{ borderRadius: '100px' }}
       />
       <span className='categories-item-title'>{category.name}</span>
-    </Col>
+    </div>
   )
 }

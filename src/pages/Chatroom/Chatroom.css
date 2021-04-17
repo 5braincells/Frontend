@@ -1,3 +1,21 @@
+.chatroom-page {
+  display: flex;
+}
+
+@media screen and (max-width: 800px) {
+  .send-box {
+    left: 0 !important;
+  }
+
+  .chatroom-container {
+    box-shadow: none !important;
+  }
+
+  .chatroom-header {
+    box-shadow: 0px 4px 4px #22262a !important;
+  }
+}
+
 .chatroom-container {
   background-color: #2e3338;
   padding-top: 56px;
@@ -7,6 +25,7 @@
   display: flex;
   flex: 1;
   flex-direction: column;
+  box-shadow: inset 2px 4px 6px #171a1c;
 }
 
 .chatroom-header {
@@ -17,7 +36,7 @@
   align-items: center;
   border-top: 1px solid gray;
   border-bottom: 1px solid gray;
-  box-shadow: 0px 4px 4px #22262a;
+  box-shadow: 4px 2px 6px #171a1c;
 }
 .chatroom-header-title {
   padding: 5px 10px;
@@ -25,7 +44,6 @@
 }
 
 .message-list {
-  background-color: #2e3338;
   padding: 10px;
   display: flex;
   flex-direction: column-reverse;
@@ -75,9 +93,6 @@
   border-top-right-radius: 0px;
   align-self: flex-end;
 }
-.message-text {
-  /* margin: 0px 4px; */
-}
 .message-image {
   width: 100%;
   border-radius: 4px;
@@ -104,7 +119,7 @@
 .send-box {
   position: fixed;
   bottom: 0;
-  left: 0;
+  left: 350px;
   right: 0;
   z-index: 999;
   padding: 10px;
@@ -137,6 +152,9 @@
 .button:hover {
   box-shadow: 0px 0px 12px #5b6671;
 }
+.button:active {
+  background: linear-gradient(to bottom, #1fada6, #17827d);
+}
 
 .dropdown-toggle {
   background-color: transparent;
@@ -149,6 +167,10 @@
   border: none !important;
   outline: none !important;
   box-shadow: 0px 0px 12px #5b6671 !important;
+}
+.dropdown-toggle:focus,
+.dropdown-toggle:active {
+  background: linear-gradient(to bottom, #1fada6, #17827d);
 }
 .dropdown-toggle:after {
   display: none;
@@ -167,4 +189,10 @@
 .dropdown-item:hover,
 .dropdown-item:focus {
   background-color: transparent;
+}
+
+.image-modal .modal-content {
+  background: transparent;
+  box-shadow: none;
+  border: none;
 }

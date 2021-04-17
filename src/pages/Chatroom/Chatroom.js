@@ -13,6 +13,7 @@ import * as Icons from '@fortawesome/free-solid-svg-icons'
 import './Chatroom.css'
 import ChatroomHeader from '../../components/ChatroomHeader'
 import Message from '../../components/Message'
+import Categories from '../Categories/Categories'
 
 const ip = process.env.REACT_APP_IP
 
@@ -108,95 +109,100 @@ export default function Chatroom() {
   })
 
   return (
-    <div className='chatroom-container'>
-      <ChatroomHeader chatroom={chatroom} />
-      <div className='message-list'>{messageList}</div>
-      <Form className='send-box'>
-        <Dropdown as={ButtonGroup}>
-          <Dropdown.Toggle className='button dropdown-toggle'>
+    <div className='chatroom-page'>
+      <div className="categories-left">
+        <Categories/>
+      </div>
+      <div className='chatroom-container'>
+        <ChatroomHeader chatroom={chatroom} />
+        <div className='message-list'>{messageList}</div>
+        <Form className='send-box'>
+          <Dropdown as={ButtonGroup}>
+            <Dropdown.Toggle className='button dropdown-toggle'>
+              <FontAwesomeIcon
+                style={{ paddingRight: '2px' }}
+                color='#fff'
+                icon={Icons.faPaperclip}
+              />
+            </Dropdown.Toggle>
+            <Dropdown.Menu className='dropdown-menu'>
+              <div className='dropdown-item'>
+                <label
+                  style={{ marginBottom: '0px' }}
+                  htmlFor='image-upload-button'>
+                  <div
+                    className='button'
+                    style={{
+                      cursor: 'pointer',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}
+                    variant='light'>
+                    <FontAwesomeIcon
+                      style={{ paddingRight: '2px' }}
+                      color='#fff'
+                      icon={Icons.faImage}
+                    />
+                  </div>
+                </label>
+                <input
+                  type='file'
+                  accept='image/*'
+                  id='image-upload-button'
+                  style={{ display: 'none' }}
+                  onChange={sendImage}
+                />
+              </div>
+              <div className='dropdown-item'>
+                <label
+                  style={{ marginBottom: '0px' }}
+                  htmlFor='file-upload-button'>
+                  <div
+                    className='button'
+                    style={{
+                      cursor: 'pointer',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}
+                    variant='light'>
+                    <FontAwesomeIcon
+                      style={{ paddingRight: '2px' }}
+                      color='#fff'
+                      icon={Icons.faFile}
+                    />
+                  </div>
+                </label>
+                <input
+                  type='file'
+                  id='file-upload-button'
+                  style={{ display: 'none' }}
+                  onChange={sendFile}
+                />
+              </div>
+            </Dropdown.Menu>
+          </Dropdown>
+          <Form.Control
+            className='message-input'
+            placeholder='Send a message'
+            aria-label='message'
+            value={message}
+            onChange={data => setMessage(data.target.value)}
+          />
+          <Button
+            className='button'
+            type='submit'
+            variant='light'
+            onClick={sendMessage}>
             <FontAwesomeIcon
               style={{ paddingRight: '2px' }}
               color='#fff'
-              icon={Icons.faPaperclip}
+              icon={Icons.faPaperPlane}
             />
-          </Dropdown.Toggle>
-          <Dropdown.Menu className='dropdown-menu'>
-            <div className='dropdown-item'>
-              <label
-                style={{ marginBottom: '0px' }}
-                htmlFor='image-upload-button'>
-                <div
-                  className='button'
-                  style={{
-                    cursor: 'pointer',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}
-                  variant='light'>
-                  <FontAwesomeIcon
-                    style={{ paddingRight: '2px' }}
-                    color='#fff'
-                    icon={Icons.faImage}
-                  />
-                </div>
-              </label>
-              <input
-                type='file'
-                accept='image/*'
-                id='image-upload-button'
-                style={{ display: 'none' }}
-                onChange={sendImage}
-              />
-            </div>
-            <div className='dropdown-item'>
-              <label
-                style={{ marginBottom: '0px' }}
-                htmlFor='file-upload-button'>
-                <div
-                  className='button'
-                  style={{
-                    cursor: 'pointer',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}
-                  variant='light'>
-                  <FontAwesomeIcon
-                    style={{ paddingRight: '2px' }}
-                    color='#fff'
-                    icon={Icons.faFile}
-                  />
-                </div>
-              </label>
-              <input
-                type='file'
-                id='file-upload-button'
-                style={{ display: 'none' }}
-                onChange={sendFile}
-              />
-            </div>
-          </Dropdown.Menu>
-        </Dropdown>
-        <Form.Control
-          className='message-input'
-          placeholder='Send a message'
-          aria-label='message'
-          value={message}
-          onChange={data => setMessage(data.target.value)}
-        />
-        <Button
-          className='button'
-          type='submit'
-          variant='light'
-          onClick={sendMessage}>
-          <FontAwesomeIcon
-            style={{ paddingRight: '2px' }}
-            color='#fff'
-            icon={Icons.faPaperPlane}
-          />
-        </Button>
-      </Form>
+          </Button>
+        </Form>
+      </div>
     </div>
   )
 }
