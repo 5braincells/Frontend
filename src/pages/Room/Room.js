@@ -37,10 +37,12 @@ const Room = props => {
   const { roomID } = useParams()
 
   useEffect(() => {
+    let tracks
     socketRef.current = io.connect(process.env.REACT_APP_IP_PUBLIC)
     navigator.mediaDevices
       .getUserMedia({ video: videoConstraints, audio: true })
       .then(stream => {
+        tracks = stream.getTracks()
         userVideo.current.srcObject = stream
         socketRef.current.emit('join room', roomID)
         socketRef.current.on('all users', users => {
@@ -51,7 +53,10 @@ const Room = props => {
               peerID: userID,
               peer,
             })
-            peers.push(peer)
+            peers.push({
+              peerID: userID,
+              peer,
+            })
           })
           setPeers(peers)
         })
@@ -63,14 +68,38 @@ const Room = props => {
             peer,
           })
 
-          setPeers(users => [...users, peer])
+          const peerObj = {
+            peer,
+            peerID: payload.callerID,
+          }
+
+          setPeers(users => [...users, peerObj])
         })
 
         socketRef.current.on('receiving returned signal', payload => {
           const item = peersRef.current.find(p => p.peerID === payload.id)
           item.peer.signal(payload.signal)
         })
+
+        socketRef.current.on('user left', id => {
+          const peerObj = peersRef.current.find(p => p.peerID === id)
+          if (peerObj) {
+            peerObj.peer.destroy()
+          }
+          const peers = peersRef.current.filter(p => p.peerID !== id)
+          peersRef.current = peers
+          setPeers(peers)
+        })
       })
+    return () => {
+      socketRef.current.disconnect()
+      socketRef.current = null
+      peersRef.current.forEach(peer => peer.peer.destroy())
+      peers.forEach(peer => peer.peer.destroy())
+      tracks.forEach(track => {
+        track.stop()
+      })
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -128,8 +157,8 @@ const Room = props => {
           autoPlay
           playsInline
         />
-        {peers.map((peer, index) => {
-          return <Video key={index} peer={peer} />
+        {peers.map(peer => {
+          return <Video key={peer.peerID} peer={peer.peer} />
         })}
       </div>
       <div className='room-buttons'>
