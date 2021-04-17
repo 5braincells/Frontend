@@ -12,7 +12,7 @@ export default function Chatroom({ chatroom }) {
 
   const handleClick = event => {
     event.preventDefault()
-    history.goBack()
+    history.push('/categories')
   }
 
   const createCall = event => {
@@ -24,15 +24,13 @@ export default function Chatroom({ chatroom }) {
     <div className='chatroom-header'>
       <button
         style={{
-          border: 'none',
-          outline: 'none',
-          background: 'transparent',
-          padding: '0',
-          cursor: 'pointer',
+          margin: '0px 12px 0px 0px'
         }}
-        onClick={handleClick}>
+        className='header-link'
+        onClick={handleClick}
+        title='Go Back'
+        >
         <FontAwesomeIcon
-          className='mr-3 ml-1'
           color='#fff'
           icon={Icons.faArrowLeft}
           size='lg'
@@ -48,14 +46,11 @@ export default function Chatroom({ chatroom }) {
       <span className='chatroom-header-title'>{chatroom.name}</span>
       <button
         style={{
-          border: 'none',
-          outline: 'none',
-          background: 'transparent',
-          padding: '0',
-          cursor: 'pointer',
+          margin: '0px'
         }}
-        className='mr-3 ml-auto'
-        onClick={createCall}>
+        className='header-link mr-3 ml-auto'
+        onClick={createCall}
+        title='Start Video Call'>
         <FontAwesomeIcon color='#fff' icon={Icons.faVideo} size='lg' />
       </button>
     </div>

@@ -134,7 +134,7 @@ const Room = props => {
       </div>
       <div className='room-buttons'>
         <Button
-          className='button mr-1 ml-1'
+          className='room-button mr-1 ml-1'
           type='submit'
           variant='light'
           onClick={handleMute}>
@@ -146,7 +146,7 @@ const Room = props => {
           />
         </Button>
         <Button
-          className='button mr-1 ml-1'
+          className='room-button mr-1 ml-1'
           type='submit'
           variant='light'
           onClick={handleLeave}>

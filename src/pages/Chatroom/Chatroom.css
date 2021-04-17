@@ -49,12 +49,6 @@
   flex-direction: column;
   overflow: scroll;
 }
-.message-list::-webkit-scrollbar-track {
-  background: transparent;
-}
-.message-list::-webkit-scrollbar-thumb {
-  background: #888;
-}
 
 .message {
   padding: 6px;
@@ -79,7 +73,7 @@
 .message-info .message-name {
   display: inline-block;
 }
-.message-info .message-date {
+.message-info .message-date, .message-info .message-button {
   margin-left: 6px;
   float: right;
 }
@@ -144,10 +138,10 @@
   background: linear-gradient(to bottom, #20b2aa, #1b9891);
   border: none;
   border-radius: 20px;
-  width: 38px;
-  height: 38px;
   box-shadow: 0px 0px 12px #22262a;
   transition: all 0.25s;
+  width: 38px;
+  height: 38px;
 }
 .button:hover {
   box-shadow: 0px 0px 12px #5b6671;

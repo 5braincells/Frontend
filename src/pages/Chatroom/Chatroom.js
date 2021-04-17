@@ -125,7 +125,9 @@ export default function Chatroom() {
         <div className='message-list'>{messageList}</div>
         <Form className='send-box'>
           <Dropdown as={ButtonGroup}>
-            <Dropdown.Toggle className='button dropdown-toggle'>
+            <Dropdown.Toggle 
+              className='button dropdown-toggle'
+              title='Attachments'>
               <FontAwesomeIcon
                 style={{ paddingRight: '2px' }}
                 color='#fff'
@@ -203,7 +205,6 @@ export default function Chatroom() {
             variant='light'
             onClick={sendMessage}>
             <FontAwesomeIcon
-              style={{ paddingRight: '2px' }}
               color='#fff'
               icon={Icons.faPaperPlane}
             />

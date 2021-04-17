@@ -34,9 +34,9 @@ export default function Message({ message }) {
   const dateString =
     (!(msgDate.getDate() === thisDate.getDate())
       ? days[msgDate.getDay()] + ' '
-      : '') +
+      : '') + (msgDate.getHours() < 10 ? '0' : '') +
     msgDate.getHours() +
-    ':' +
+    ':' + (msgDate.getMinutes() < 10 ? '0' : '') +
     msgDate.getMinutes()
 
   return (
@@ -48,6 +48,17 @@ export default function Message({ message }) {
       <div className='message-info'>
         <span className='message-username'>{firstName + ' ' + lastName}</span>
         <span className='message-date'>{dateString}</span>
+        {userID === message.author ? 
+          <button 
+            className='blank-button message-button'
+            title='Delete Message'
+          >
+            <FontAwesomeIcon
+              color='#fff'
+              icon={Icons.faTrash}
+            />
+          </button> : '' 
+        }
       </div>
       {message.type === 'msg' || message.type === undefined ? (
         <div className='message-text'>{message.message}</div>
