@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 
 export default function CategoriesItem({ category }) {
   const history = useHistory()
-  const user = useSelector(state => state?.jwt?.user)
+  const user = JSON.parse(useSelector(state => state?.jwt?.user))
 
   const handleClick = () => {
     // navigate to chat

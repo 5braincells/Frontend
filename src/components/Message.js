@@ -23,6 +23,7 @@ export default function Message({ message }) {
         setFirstName(response.data.firstName)
         setLastName(response.data.lastName)
       })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const msgDate = new Date(message.time)
