@@ -44,21 +44,22 @@ export default function Message({ message }) {
       key={message.id}
       className={`message ${
         userID === message.author ? 'message-sent' : 'message-received'
-      }`}>
+      }`}
+      tabIndex='-1'>
       <div className='message-info'>
-        <span className='message-username'>{firstName + ' ' + lastName}</span>
-        <span className='message-date'>{dateString}</span>
         {userID === message.author ? 
           <button 
             className='blank-button message-button'
             title='Delete Message'
           >
             <FontAwesomeIcon
-              color='#fff'
+              color='#f00'
               icon={Icons.faTrash}
             />
           </button> : '' 
         }
+        <span className='message-username'>{firstName + ' ' + lastName}</span>
+        <span className='message-date'>{dateString}</span>
       </div>
       {message.type === 'msg' || message.type === undefined ? (
         <div className='message-text'>{message.message}</div>
