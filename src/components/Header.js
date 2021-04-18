@@ -1,16 +1,13 @@
 import React from 'react'
 import { Navbar, Nav } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router'
 import { Link } from 'react-router-dom'
 
 export default function Header() {
-  const history = useHistory()
   const dispatch = useDispatch()
   const jwt = useSelector(state => state?.jwt?.jwt)
 
   const logOut = e => {
-    history.push('/')
     const remember = JSON.parse(localStorage.getItem('remember'))
     dispatch({ type: 'UNSIGNING', remember: remember })
   }
@@ -23,24 +20,24 @@ export default function Header() {
       <Navbar.Toggle aria-controls='basic-navbar-nav' />
       <Navbar.Collapse id='basic-navbar-nav'>
         <Nav className='mr-auto'>
-          <Link to='/home' className="header-link">
+          <Link to='/home' className='header-link'>
             Home
           </Link>
-          <Link to='/categories' className="header-link">
+          <Link to='/categories' className='header-link'>
             Categories
           </Link>
         </Nav>
         <Nav>
           {jwt ? (
-            <Link onClick={logOut} className="header-link">
+            <Link to='/' onClick={logOut} className='header-link'>
               Log Out
             </Link>
           ) : (
             <>
-              <Link to='/register' className="header-link">
+              <Link to='/register' className='header-link'>
                 Register
               </Link>
-              <Link to='/login' className="header-link">
+              <Link to='/login' className='header-link'>
                 Log In
               </Link>
             </>
