@@ -30,6 +30,7 @@ const videoConstraints = {
 const Room = props => {
   const [peers, setPeers] = useState([])
   const [muted, setMuted] = useState(false)
+  const [video, setVideo] = useState(false)
   const socketRef = useRef()
   const userVideo = useRef()
   const peersRef = useRef([])
@@ -139,7 +140,18 @@ const Room = props => {
 
   const handleMute = event => {
     event.preventDefault()
+    userVideo.current.srcObject
+      .getAudioTracks()
+      .forEach(track => (track.enabled = !track.enabled))
     setMuted(!muted)
+  }
+
+  const handleVideo = event => {
+    event.preventDefault()
+    userVideo.current.srcObject.getTracks().forEach(track => {
+      if (track.kind !== 'audio') track.enabled = !track.enabled
+    })
+    setVideo(!video)
   }
 
   const handleLeave = event => {
@@ -171,6 +183,18 @@ const Room = props => {
             style={{ paddingRight: '2px' }}
             color='#fff'
             icon={muted ? Icons.faMicrophoneSlash : Icons.faMicrophone}
+            size='lg'
+          />
+        </Button>
+        <Button
+          className='room-button mr-1 ml-1'
+          type='submit'
+          variant='light'
+          onClick={handleVideo}>
+          <FontAwesomeIcon
+            style={{ paddingRight: '2px' }}
+            color='#fff'
+            icon={video ? Icons.faVideoSlash : Icons.faVideo}
             size='lg'
           />
         </Button>

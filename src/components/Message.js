@@ -26,6 +26,18 @@ export default function Message({ message }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  const handleDelete = event => {
+    event.preventDefault()
+    axios.post(process.env.REACT_APP_IP + '/deleteMessage', {
+      id: message._id,
+      userID,
+      jwt,
+      messageData: {
+        category: message.category,
+      },
+    })
+  }
+
   const msgDate = new Date(message.time)
   const thisDate = new Date()
 
@@ -34,9 +46,11 @@ export default function Message({ message }) {
   const dateString =
     (!(msgDate.getDate() === thisDate.getDate())
       ? days[msgDate.getDay()] + ' '
-      : '') + (msgDate.getHours() < 10 ? '0' : '') +
+      : '') +
+    (msgDate.getHours() < 10 ? '0' : '') +
     msgDate.getHours() +
-    ':' + (msgDate.getMinutes() < 10 ? '0' : '') +
+    ':' +
+    (msgDate.getMinutes() < 10 ? '0' : '') +
     msgDate.getMinutes()
 
   return (
@@ -47,17 +61,16 @@ export default function Message({ message }) {
       }`}
       tabIndex='-1'>
       <div className='message-info'>
-        {userID === message.author ? 
-          <button 
+        {userID === message.author ? (
+          <button
             className='blank-button message-button'
             title='Delete Message'
-          >
-            <FontAwesomeIcon
-              color='#f00'
-              icon={Icons.faTrash}
-            />
-          </button> : '' 
-        }
+            onClick={handleDelete}>
+            <FontAwesomeIcon color='#f00' icon={Icons.faTrash} />
+          </button>
+        ) : (
+          ''
+        )}
         <span className='message-username'>{firstName + ' ' + lastName}</span>
         <span className='message-date'>{dateString}</span>
       </div>

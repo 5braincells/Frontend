@@ -19,8 +19,6 @@ const ip = process.env.REACT_APP_IP
 
 let arr = []
 
-let pusher
-
 export default function Chatroom() {
   const { category } = useParams()
   const [messages, setMessages] = useState([])
@@ -40,17 +38,27 @@ export default function Chatroom() {
       })
       .catch(e => console.log(e))
 
-    pusher = new Pusher(process.env.REACT_APP_KEY, {
+    const pusher = new Pusher(process.env.REACT_APP_KEY, {
       cluster: process.env.REACT_APP_CLUSTER,
     })
 
     var channel = pusher.subscribe(category)
     channel.bind('message', function (data) {
-      // alert(JSON.stringify(data))
-      arr = [data.message, ...arr]
-      setMessages(arr)
+      if (data.message.type === 'msgDelete') {
+        let arr2 = [...arr]
+        const position = arr2.findIndex(
+          message => message._id === data.message._id
+        )
+        if (position > -1) {
+          arr2.splice(position, 1)
+        }
+        arr = [...arr2]
+        setMessages(arr)
+      } else {
+        arr = [...arr, data.message]
+        setMessages(arr)
+      }
     })
-    console.log('ouch')
 
     return () => {
       pusher.unsubscribe(category)
@@ -118,14 +126,14 @@ export default function Chatroom() {
   return (
     <div className='chatroom-page'>
       <div className='categories-left'>
-        <Categories pusher={pusher} currentCategory={category} />
+        <Categories />
       </div>
       <div className='chatroom-container'>
         <ChatroomHeader chatroom={chatroom} />
         <div className='message-list'>{messageList}</div>
         <Form className='send-box'>
           <Dropdown as={ButtonGroup}>
-            <Dropdown.Toggle 
+            <Dropdown.Toggle
               className='button dropdown-toggle'
               title='Attachments'>
               <FontAwesomeIcon
@@ -204,10 +212,7 @@ export default function Chatroom() {
             type='submit'
             variant='light'
             onClick={sendMessage}>
-            <FontAwesomeIcon
-              color='#fff'
-              icon={Icons.faPaperPlane}
-            />
+            <FontAwesomeIcon color='#fff' icon={Icons.faPaperPlane} />
           </Button>
         </Form>
       </div>
