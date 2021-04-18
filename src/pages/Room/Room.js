@@ -23,8 +23,8 @@ const Video = props => {
 }
 
 const videoConstraints = {
-  height: window.innerHeight / 2,
-  width: window.innerWidth / 2,
+  height: window.innerHeight,
+  width: window.innerWidth,
 }
 
 const Room = props => {
