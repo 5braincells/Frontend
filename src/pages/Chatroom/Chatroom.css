@@ -13,19 +13,20 @@
 
   .chatroom-header {
     box-shadow: 0px 4px 4px #22262a !important;
+    left: 0 !important;
   }
 }
 
 .chatroom-container {
   background-color: #2e3338;
-  padding-top: 56px;
+  margin-top: 114px;
   padding-bottom: 56px;
-  height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
+  height: calc((var(--vh, 1vh) * 100) - 114px);
   display: flex;
   flex: 1;
   flex-direction: column;
-  box-shadow: inset 2px 4px 6px #171a1c;
+  box-shadow: inset 4px 4px 6px #171a1c;
+  overflow-y: scroll;
 }
 
 .chatroom-header {
@@ -36,7 +37,11 @@
   align-items: center;
   border-top: 1px solid gray;
   border-bottom: 1px solid gray;
-  box-shadow: 4px 2px 6px #171a1c;
+  box-shadow: 4px 4px 6px #171a1c;
+  position: fixed;
+  top: 56px;
+  left: 350px;
+  right: 0;
 }
 .chatroom-header-title {
   padding: 5px 10px;
@@ -47,7 +52,6 @@
   padding: 10px;
   display: flex;
   flex-direction: column;
-  overflow: scroll;
 }
 
 .message {
@@ -128,7 +132,13 @@
 .modal-image {
   height: 80vh;
   align-self: center;
+  box-shadow: 0px 0px 12px #000;
 }
+.image-modal .modal-content {
+  background: transparent;
+  border: none;
+}
+
 
 .send-box {
   position: fixed;
@@ -138,6 +148,7 @@
   z-index: 999;
   padding: 10px;
   display: flex;
+  background: linear-gradient(to bottom, transparent, #2e3338);
 }
 .send-box .message-input {
   border: none;
@@ -204,10 +215,4 @@
 .dropdown-item:hover,
 .dropdown-item:focus {
   background-color: transparent;
-}
-
-.image-modal .modal-content {
-  background: transparent;
-  box-shadow: none;
-  border: none;
 }
