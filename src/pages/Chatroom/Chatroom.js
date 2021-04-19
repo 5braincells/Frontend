@@ -55,7 +55,8 @@ export default function Chatroom() {
         arr = [...arr2]
         setMessages(arr)
       } else {
-        arr = [...arr, data.message]
+        console.log(data)
+        arr = [data.message, ...arr]
         setMessages(arr)
       }
     })
