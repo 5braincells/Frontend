@@ -112,8 +112,16 @@ export default function Chatroom() {
     axios.post(process.env.REACT_APP_IP + '/sendFile', formData)
   }
 
-  const messageList = messages.map((message, index) => (
-    <Message message={message} key={index} />
+  const handleScroll = event => {
+    const target = event.target
+
+    if (target.scrollHeight + target.scrollTop === target.clientHeight) {
+      console.log('nice')
+    }
+  }
+
+  const messageList = messages.map(message => (
+    <Message message={message} key={message._id} />
   ))
 
   let vh = window.innerHeight * 0.01
@@ -130,7 +138,9 @@ export default function Chatroom() {
       </div>
       <div className='chatroom-container'>
         <ChatroomHeader chatroom={chatroom} />
-        <div className='message-list'>{messageList}</div>
+        <div onScroll={handleScroll} className='message-list'>
+          {messageList}
+        </div>
         <Form className='send-box'>
           <Dropdown as={ButtonGroup}>
             <Dropdown.Toggle
