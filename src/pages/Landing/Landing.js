@@ -289,7 +289,7 @@ function Landing() {
         </Row>
 
         <h1 className='heading'>Contact us</h1>
-        <div class='contacts'>
+        <div className='contacts'>
           <a href='mailto:academy@gmail.com'>
             <FontAwesomeIcon icon={fa.faEnvelope} />
             Mail Us
