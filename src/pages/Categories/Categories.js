@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import CategoriesItem from '../../components/CategoriesItem'
 
 import './Categories.css'
+import CustomRoomModal from '../../components/CustomRoomModal'
 
 export default function Categories() {
+  const [modalShow, setModalShow] = useState(false)
   const categories = [
     {
       id: 'matematica',
@@ -58,5 +60,25 @@ export default function Categories() {
     <CategoriesItem key={category.id} category={category} />
   ))
 
-  return <div className='categories-container'>{categoriesList}</div>
+  return (
+    <div className='categories-container'>
+      <CustomRoomModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        handleclosebutton={() => setModalShow(false)}
+      />
+      <div
+        key='new'
+        className='categories-item'
+        onClick={() => setModalShow(true)}>
+        <img
+          src='https://icons-for-free.com/iconfiles/png/512/new-131964784768442353.png'
+          className='categories-image'
+          alt=''
+        />
+        <span className='categories-item-title'>Custom studyroom</span>
+      </div>
+      {categoriesList}
+    </div>
+  )
 }
