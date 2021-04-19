@@ -26,7 +26,6 @@
   flex: 1;
   flex-direction: column;
   box-shadow: inset 4px 4px 6px #171a1c;
-  overflow-y: scroll;
 }
 
 .chatroom-header {
@@ -151,7 +150,6 @@
   z-index: 999;
   padding: 10px;
   display: flex;
-  background: linear-gradient(to bottom, transparent, #2e3338);
 }
 .send-box .message-input {
   border: none;
