@@ -23,8 +23,8 @@ const Video = props => {
 }
 
 const videoConstraints = {
-  height: window.innerHeight / 2,
-  width: window.innerWidth / 2,
+  height: window.innerHeight,
+  width: window.innerWidth,
 }
 
 const Room = props => {
@@ -88,8 +88,11 @@ const Room = props => {
             peerObj.peer.destroy()
           }
           const peers = peersRef.current.filter(p => p.peerID !== id)
-          peersRef.current = peers
-          setPeers(peers)
+          let uniquePeers = peers.filter((peer, index) => {
+            return peers.indexOf(peer) === index
+          })
+          peersRef.current = [...uniquePeers]
+          setPeers(uniquePeers)
         })
       })
     return () => {
@@ -158,6 +161,8 @@ const Room = props => {
     event.preventDefault()
     history.goBack()
   }
+
+  console.log(peers)
 
   return (
     <div className='room-container'>

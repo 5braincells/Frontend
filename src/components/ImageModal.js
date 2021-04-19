@@ -13,7 +13,7 @@ export default function ImageModal(props) {
       <img
         style={{ backgroundColor: '#454d5444' }}
         className='modal-image'
-        src={props.imgSrc}
+        src={props.imgsrc}
         alt=':('
       />
     </Modal>
