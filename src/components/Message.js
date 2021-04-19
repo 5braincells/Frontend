@@ -86,7 +86,7 @@ export default function Message({ message }) {
           />
           <ImageModal
             show={modalShow}
-            imgSrc={
+            imgsrc={
               process.env.REACT_APP_IP_PUBLIC + '/files/' + message.filename
             }
             onHide={() => setModalShow(false)}
