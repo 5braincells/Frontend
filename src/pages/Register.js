@@ -56,6 +56,7 @@ export default function Register() {
             <Form.Control
               name='firstName'
               placeholder='First name'
+              className='textbox'
               ref={register({ required: true })}
             />
             {errors.firstName && errors.firstName.type === 'required' && (
@@ -66,6 +67,7 @@ export default function Register() {
             <Form.Control
               name='lastName'
               placeholder='Last name'
+              className='textbox'
               ref={register({ required: true })}
             />
             {errors.lastName && errors.lastName.type === 'required' && (
@@ -78,6 +80,7 @@ export default function Register() {
             <Form.Control
               name='grade'
               as='select'
+              className='textbox'
               ref={register({ required: true })}>
               <option value='9'>Clasa a 9-a</option>
               <option value='10'>Clasa a 10-a</option>
@@ -91,6 +94,7 @@ export default function Register() {
             name='email'
             type='email'
             placeholder='Email Address'
+            className='textbox'
             ref={register({ required: true })}
           />
           {errors.email && errors.email.type === 'required' && (
@@ -103,6 +107,7 @@ export default function Register() {
               name='password'
               type={type}
               placeholder='Password'
+              className='textbox'
               ref={register({ required: true })}
               onChange={event => setPassword(event.target.value)}
             />
@@ -115,6 +120,7 @@ export default function Register() {
               name='password2'
               type={type}
               placeholder='Confirm'
+              className='textbox'
               ref={register({ required: true, validate: arePasswordsTheSame })}
             />
             {errors.password2 && errors.password2.type === 'required' && (
@@ -134,7 +140,7 @@ export default function Register() {
             onClick={showHide}
           />
         </Form.Group>
-        <Button block variant='primary' type='submit'>
+        <Button block className='button button-green' type='submit'>
           Register
         </Button>
       </Form>

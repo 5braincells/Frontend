@@ -13,7 +13,7 @@ import * as Icons from '@fortawesome/free-solid-svg-icons'
 import './Chatroom.css'
 import ChatroomHeader from '../../components/ChatroomHeader'
 import Message from '../../components/Message'
-import Categories from '../Categories/Categories'
+import CategoriesList from '../../components/CategoriesList'
 
 const ip = process.env.REACT_APP_IP
 
@@ -55,7 +55,6 @@ export default function Chatroom() {
         arr = [...arr2]
         setMessages(arr)
       } else {
-        console.log(data)
         arr = [data.message, ...arr]
         setMessages(arr)
       }
@@ -128,7 +127,7 @@ export default function Chatroom() {
   return (
     <div className='chatroom-page'>
       <div className='categories-left'>
-        <Categories />
+        <CategoriesList />
       </div>
       <div className='chatroom-container'>
         <ChatroomHeader chatroom={chatroom} />
@@ -138,7 +137,7 @@ export default function Chatroom() {
         <Form className='send-box'>
           <Dropdown as={ButtonGroup}>
             <Dropdown.Toggle
-              className='button dropdown-toggle'
+              className='button button-round dropdown-toggle'
               title='Attachments'>
               <FontAwesomeIcon
                 style={{ paddingRight: '2px' }}
@@ -152,7 +151,7 @@ export default function Chatroom() {
                   style={{ marginBottom: '0px' }}
                   htmlFor='image-upload-button'>
                   <div
-                    className='button'
+                    className='button button-round'
                     style={{
                       cursor: 'pointer',
                       display: 'flex',
@@ -180,7 +179,7 @@ export default function Chatroom() {
                   style={{ marginBottom: '0px' }}
                   htmlFor='file-upload-button'>
                   <div
-                    className='button'
+                    className='button button-round'
                     style={{
                       cursor: 'pointer',
                       display: 'flex',
@@ -205,16 +204,15 @@ export default function Chatroom() {
             </Dropdown.Menu>
           </Dropdown>
           <Form.Control
-            className='message-input'
+            className='textbox message-input'
             placeholder='Send a message'
             aria-label='message'
             value={message}
             onChange={data => setMessage(data.target.value)}
           />
           <Button
-            className='button'
+            className='button button-green button-round'
             type='submit'
-            variant='light'
             onClick={sendMessage}>
             <FontAwesomeIcon color='#fff' icon={Icons.faPaperPlane} />
           </Button>

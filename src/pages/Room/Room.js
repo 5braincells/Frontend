@@ -214,43 +214,40 @@ const Room = props => {
       </div>
       <div className='room-buttons'>
         <Button
-          className='room-button mr-1 ml-1'
+          className='button button-green button-round-large mr-1 ml-1'
           type='submit'
           variant='light'
           onClick={handleMute}>
           <FontAwesomeIcon
-            style={{ paddingRight: '2px' }}
             color='#fff'
             icon={muted ? Icons.faMicrophoneSlash : Icons.faMicrophone}
             size='lg'
           />
         </Button>
         <Button
-          className='room-button mr-1 ml-1'
+          className='button button-green button-round-large mr-1 ml-1'
           type='submit'
           variant='light'
           onClick={handleVideo}>
           <FontAwesomeIcon
-            style={{ paddingRight: '2px' }}
             color='#fff'
             icon={video ? Icons.faVideoSlash : Icons.faVideo}
             size='lg'
           />
         </Button>
         <Button
-          className='room-button mr-1 ml-1'
+          className='button button-red button-round-large mr-1 ml-1'
           type='submit'
           variant='light'
           onClick={handleLeave}>
           <FontAwesomeIcon
-            style={{ paddingRight: '2px' }}
             color='#fff'
             icon={Icons.faPhoneSlash}
             size='lg'
           />
         </Button>
         <Button
-          className='room-button mr-1 ml-1'
+          className='button button-round-large mr-1 ml-1'
           type='submit'
           variant='light'
           onClick={e => {
