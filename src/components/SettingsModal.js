@@ -44,17 +44,18 @@ export default function SettingsModal({
   return (
     <Modal show={show} onHide={() => onHide}>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <Modal.Header style={{ backgroundColor: '#343a40' }}>
-          <Modal.Title>Create a custom studyroom</Modal.Title>
+        <Modal.Header>
+          <Modal.Title>Call Settings</Modal.Title>
         </Modal.Header>
 
-        <Modal.Body style={{ backgroundColor: '#343a40' }}>
+        <Modal.Body>
           <h3>Video</h3>
           <Form.Group controlId='formVideoDevice'>
             <Form.Control
               name='video'
               as='select'
               custom
+              className='textbox'
               ref={register({ required: true })}>
               {videoDevicesList}
             </Form.Control>
@@ -65,19 +66,20 @@ export default function SettingsModal({
               name='audio'
               as='select'
               custom
+              className='textbox'
               ref={register({ required: true })}>
               {audioDevicesList}
             </Form.Control>
           </Form.Group>
         </Modal.Body>
 
-        <Modal.Footer style={{ backgroundColor: '#343a40' }}>
-          <Button variant='secondary' onClick={handleclosebutton}>
+        <Modal.Footer>
+          <button className='button' type='reset' onClick={handleclosebutton}>
             Close
-          </Button>
-          <Button variant='primary' type='submit'>
-            Submit
-          </Button>
+          </button>
+          <button className='button button-green' type='submit'>
+            Save
+          </button>
         </Modal.Footer>
       </Form>
     </Modal>
