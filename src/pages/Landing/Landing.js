@@ -367,7 +367,9 @@ function Landing() {
           </div>
         </div>
       ) : (
-        <Spinner animation='border' />
+        <div class="loading-box">
+          <Spinner animation='border' />
+        </div>
       )}
     </div>
   )
