@@ -68,7 +68,7 @@ export default function CategoriesList() {
             />
             <div
                 key='new'
-                className='categories-item'
+                className='categories-item categories-item-green'
                 onClick={() => setModalShow(true)}>
                 <img
                     src='https://icons-for-free.com/iconfiles/png/512/new-131964784768442353.png'
