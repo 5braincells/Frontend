@@ -20,9 +20,6 @@ export default function Header() {
       <Navbar.Toggle aria-controls='basic-navbar-nav' />
       <Navbar.Collapse id='basic-navbar-nav'>
         <Nav className='mr-auto'>
-          <Link to='/home' className='header-link'>
-            Home
-          </Link>
           <Link to='/categories' className='header-link'>
             Categories
           </Link>

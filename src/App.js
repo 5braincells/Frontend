@@ -9,7 +9,6 @@ import {
   Chatroom,
   Categories,
   Error,
-  Home,
   Landing,
   LogIn,
   Register,
@@ -33,7 +32,6 @@ export default function App() {
         <Route exact path='/register' component={Register} />
         <Route exact path='/login' component={LogIn} />
 
-        <PrivateRoute exact path='/home' component={Home} />
         <PrivateRoute exact path='/categories' component={Categories} />
         <PrivateRoute exact path='/categories/:category' component={Chatroom} />
         <PrivateRoute exact path='/room/:roomID' component={Room} />
