@@ -175,7 +175,7 @@ a:hover {
 }
 
 .modal-content {
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(12px);
   background: linear-gradient(to bottom, #394146aa, #2e3438aa);
   border: none;
   border-radius: 15px;
@@ -185,7 +185,7 @@ a:hover {
 .modal-header,
 .modal-body,
 .modal-footer {
-  border-color: #777;
+  border-color: #77777777;
 }
 
 .navbar-brand {
