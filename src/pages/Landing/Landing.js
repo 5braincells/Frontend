@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { Row, Col, Spinner } from 'react-bootstrap'
 import CountUp from 'react-countup'
 import VisibilitySensor from 'react-visibility-sensor'
+import { useSelector } from 'react-redux'
+import { useHistory } from 'react-router'
 
 import axios from 'axios'
 
@@ -13,6 +15,8 @@ import * as fab from '@fortawesome/free-brands-svg-icons'
 function Landing() {
   const [data, setData] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
+  const jwt = useSelector(state => state?.jwt?.jwt)
+  const history = useHistory()
 
   const getData = async () => {
     try {
@@ -29,6 +33,14 @@ function Landing() {
     getData()
   }, [])
 
+  const gotoCategories = e => {
+    history.push('/categories')
+  }
+
+  const gotoRegister = e => {
+    history.push('/register')
+  }
+
   return (
     <div className='page-scroll-container'>
       {isLoading ? (
@@ -39,6 +51,26 @@ function Landing() {
               * TODO: Insert good marketing slogan here *
             </p>
           </div>
+
+          {jwt ? (
+            <Row className='justify-content-center'>
+              <Col md={12} lg={7} className='text-center-w1000'>
+                <h2 className='text-act-now'>
+                  You're already logged in, you might want to go to the
+                  Categories.
+                </h2>
+              </Col>
+              <Col md={12} lg={1} className='text-center'>
+                <button
+                  className='button button-green button-act-now'
+                  onClick={gotoCategories}>
+                  Categories
+                </button>
+              </Col>
+            </Row>
+          ) : (
+            ''
+          )}
 
           <h1 className='heading'>What we do</h1>
           <Row>
@@ -298,6 +330,25 @@ function Landing() {
               </div>
             </Col>
           </Row>
+
+          {jwt ? (
+            ''
+          ) : (
+            <Row className='justify-content-center mt-4'>
+              <Col md={12} lg={5}>
+                <h2 className='text-act-now text-center'>
+                  So, what do you think? Join us today!
+                </h2>
+              </Col>
+              <Col md={12} lg={1} className='text-center'>
+                <button
+                  className='button button-green button-act-now'
+                  onClick={gotoRegister}>
+                  Register
+                </button>
+              </Col>
+            </Row>
+          )}
 
           <h1 className='heading'>Contact us</h1>
           <div className='contacts'>

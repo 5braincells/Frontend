@@ -34,7 +34,7 @@ export default function Register() {
             },
             remember: remember,
           })
-          history.push('/home')
+          history.push('/categories')
         }
       })
       .catch(e => console.log(e))

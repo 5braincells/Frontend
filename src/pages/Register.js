@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { Col, Form, Button, Container } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
@@ -32,7 +32,7 @@ export default function Register() {
             },
             remember: false,
           })
-          history.push('/home')
+          history.push('/categories')
         }
       })
       .catch(e => console.log(e))
@@ -144,6 +144,13 @@ export default function Register() {
           Register
         </Button>
       </Form>
+      <br />
+      <p>
+        Already have an account?{' '}
+        <Link to='/login' className='custom-a'>
+          Log In
+        </Link>
+      </p>
     </Container>
   )
 }
