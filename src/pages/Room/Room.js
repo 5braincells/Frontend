@@ -213,43 +213,43 @@ const Room = props => {
         })}
       </div>
       <div className='room-buttons'>
-        <Button
-          className='button button-green button-round-large mr-1 ml-1'
+        <button
+          className={`button ${muted ? 'button-red' : 'button-green'} button-round-large mr-1 ml-1`}
           type='submit'
-          variant='light'
+          title={muted ? 'Enable Voice' : 'Disable Voice'}
           onClick={handleMute}>
           <FontAwesomeIcon
             color='#fff'
             icon={muted ? Icons.faMicrophoneSlash : Icons.faMicrophone}
             size='lg'
           />
-        </Button>
-        <Button
-          className='button button-green button-round-large mr-1 ml-1'
+        </button>
+        <button
+          className={`button ${video ? 'button-red' : 'button-green'} button-round-large mr-1 ml-1`}
           type='submit'
-          variant='light'
+          title={video ? 'Enable Video' : 'Disable Video'}
           onClick={handleVideo}>
           <FontAwesomeIcon
             color='#fff'
             icon={video ? Icons.faVideoSlash : Icons.faVideo}
             size='lg'
           />
-        </Button>
-        <Button
+        </button>
+        <button
           className='button button-red button-round-large mr-1 ml-1'
           type='submit'
-          variant='light'
+          title='Leave Call'
           onClick={handleLeave}>
           <FontAwesomeIcon
             color='#fff'
             icon={Icons.faPhoneSlash}
             size='lg'
           />
-        </Button>
-        <Button
+        </button>
+        <button
           className='button button-round-large mr-1 ml-1'
           type='submit'
-          variant='light'
+          title='Call Settings'
           onClick={e => {
             e.preventDefault()
             setModalShow(true)
@@ -260,7 +260,7 @@ const Room = props => {
             icon={Icons.faCog}
             size='lg'
           />
-        </Button>
+        </button>
       </div>
     </div>
   )
