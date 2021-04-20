@@ -144,7 +144,7 @@ const Room = props => {
   }
 
   const handleMute = event => {
-    event.preventDefault()
+    event?.preventDefault()
     userVideo.current.srcObject
       .getAudioTracks()
       .forEach(track => (track.enabled = !track.enabled))
@@ -152,7 +152,7 @@ const Room = props => {
   }
 
   const handleVideo = event => {
-    event.preventDefault()
+    event?.preventDefault()
     userVideo.current.srcObject.getTracks().forEach(track => {
       if (track.kind !== 'audio') track.enabled = !track.enabled
     })
@@ -174,6 +174,15 @@ const Room = props => {
       .getUserMedia(mediaParams)
       .then(stream => {
         userVideo.current.srcObject = stream
+
+        if (video)
+          userVideo.current.srcObject.getTracks().forEach(track => {
+            if (track.kind !== 'audio') track.enabled = !track.enabled
+          })
+        if (muted)
+          userVideo.current.srcObject
+            .getAudioTracks()
+            .forEach(track => (track.enabled = !track.enabled))
       })
       .catch(e => {
         if (e.message === 'Could not start video source')
