@@ -72,33 +72,41 @@ a:hover {
   outline: none !important;
   border: none !important;
   box-shadow: 0px 0px 12px #22262a !important;
-  background: linear-gradient(to bottom, #5c6870, #505b62);
+  background-color: #5c6870 !important;
+  background-image: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(0, 0, 0, 0.25)
+  ) !important;
   border-radius: 20px;
-  padding: 4px 12px;
+  padding: 6px 16px;
   transition: all 0.25s;
+  color: white;
 }
 .button:hover {
   box-shadow: 0px 0px 12px #5b6671 !important;
+  background-color: #5c6870 !important;
 }
-.button:active,
-.button:focus {
-  background: linear-gradient(to bottom, #505b62, #454e54);
+.button:active {
+  background-color: #505b62 !important;
 }
 
-.button-green {
-  background: linear-gradient(to bottom, #20b2aa, #1b9891);
-}
-.button-green:active,
+.button-green,
+.button-green:hover,
 .button-green:focus {
-  background: linear-gradient(to bottom, #1fada6, #17827d);
+  background-color: #20b2aa !important;
+}
+.button-green:active {
+  background-color: #1b8f89 !important;
 }
 
-.button-red {
-  background: linear-gradient(to bottom, #d92626, #bf2222);
-}
-.button-red:active,
+.button-red,
+.button-red:hover,
 .button-red:focus {
-  background: linear-gradient(to bottom, #b22020, #981b1b);
+  background-color: #d92626 !important;
+}
+.button-red:active {
+  background-color: #b22020 !important;
 }
 
 .button-round {
