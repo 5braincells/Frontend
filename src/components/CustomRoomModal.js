@@ -55,10 +55,10 @@ export default function CustomRoomModal({ show, onHide, handleclosebutton }) {
 
         <Modal.Footer>
           <Button className='button' onClick={handleclosebutton}>
-            Close
+            Cancel
           </Button>
           <Button className='button button-green' type='submit'>
-            Create
+            Join
           </Button>
         </Modal.Footer>
       </Form>
