@@ -53,63 +53,67 @@ export default function Message({ message }) {
     (msgDate.getMinutes() < 10 ? '0' : '') +
     msgDate.getMinutes()
 
-  return (
-    <div
-      key={message.id}
-      className={`message ${
-        userID === message.author ? 'message-sent' : 'message-received'
-      }`}
-      tabIndex='-1'>
-      <div className='message-info'>
-        {userID === message.author ? (
-          <button
-            className='blank-button message-button'
-            title='Delete Message'
-            onClick={handleDelete}>
-            <FontAwesomeIcon color='#f00' icon={Icons.faTrash} />
-          </button>
-        ) : (
-          ''
-        )}
-        <span className='message-username'>{firstName + ' ' + lastName}</span>
-        <span className='message-date'>{dateString}</span>
-      </div>
-      {message.type === 'msg' || message.type === undefined ? (
-        <div className='message-text'>{message.message}</div>
-      ) : message.type === 'img' ? (
-        <>
-          <img
-            onClick={() => setModalShow(true)}
-            className='message-image'
-            src={process.env.REACT_APP_IP_PUBLIC + '/files/' + message.filename}
-            alt={message.filename}
-          />
-          <ImageModal
-            show={modalShow}
-            imgsrc={
-              process.env.REACT_APP_IP_PUBLIC + '/files/' + message.filename
-            }
-            onHide={() => setModalShow(false)}
-          />
-        </>
-      ) : (
-        <div class='message-file'>
-          <FontAwesomeIcon
-            style={{ marginRight: '4px', height: '1.2rem', width: '1.2rem' }}
-            color='#fff'
-            icon={Icons.faFile}
-          />
-          <a
-            href={
-              process.env.REACT_APP_IP_PUBLIC + '/files/' + message.filename
-            }
-            download={message.filename}
-            target='_blank'
-            rel='noreferrer'>
-            {message.filename}
-          </a>
+  if (firstName !== '')
+    return (
+      <div
+        key={message.id}
+        className={`message ${
+          userID === message.author ? 'message-sent' : 'message-received'
+        }`}
+        tabIndex='-1'>
+        <div className='message-info'>
+          {userID === message.author ? (
+            <button
+              className='blank-button message-button'
+              title='Delete Message'
+              onClick={handleDelete}>
+              <FontAwesomeIcon color='#f00' icon={Icons.faTrash} />
+            </button>
+          ) : (
+            ''
+          )}
+          <span className='message-username'>{firstName + ' ' + lastName}</span>
+          <span className='message-date'>{dateString}</span>
         </div>
-      )}
-    </div>
-  )
+        {message.type === 'msg' || message.type === undefined ? (
+          <div className='message-text'>{message.message}</div>
+        ) : message.type === 'img' ? (
+          <>
+            <img
+              onClick={() => setModalShow(true)}
+              className='message-image'
+              src={
+                process.env.REACT_APP_IP_PUBLIC + '/files/' + message.filename
+              }
+              alt={message.filename}
+            />
+            <ImageModal
+              show={modalShow}
+              imgsrc={
+                process.env.REACT_APP_IP_PUBLIC + '/files/' + message.filename
+              }
+              onHide={() => setModalShow(false)}
+            />
+          </>
+        ) : (
+          <div class='message-file'>
+            <FontAwesomeIcon
+              style={{ marginRight: '4px', height: '1.2rem', width: '1.2rem' }}
+              color='#fff'
+              icon={Icons.faFile}
+            />
+            <a
+              href={
+                process.env.REACT_APP_IP_PUBLIC + '/files/' + message.filename
+              }
+              download={message.filename}
+              target='_blank'
+              rel='noreferrer'>
+              {message.filename}
+            </a>
+          </div>
+        )}
+      </div>
+    )
+  else return <></>
 }
