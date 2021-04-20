@@ -2,9 +2,7 @@
   padding: 2rem;
   padding-top: 1rem;
   margin: 0 auto;
-  margin-top: 56px;
   max-width: 50%;
-  overflow-y: auto;
   justify-content: center;
 }
 .categories-container::-webkit-scrollbar-track {
@@ -35,13 +33,13 @@
   color: white;
   z-index: 0;
   transition: 0.3s;
-  box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.3);
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.3);
   cursor: pointer;
 }
 .categories-item:hover {
   z-index: 100;
   transform: scale(1.025);
-  box-shadow: 0px 21px 25px 0px rgba(0,0,0,0.3);
+  box-shadow: 0px 21px 25px 0px rgba(0, 0, 0, 0.3);
 }
 /* .categories-item::after {
   content: '';

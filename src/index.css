@@ -1,8 +1,14 @@
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif,
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+body,
+input,
+button,
+.modal-dialog {
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
   font-size: 11pt;
+}
+
+body {
   /* overflow: hidden; */
   color: white;
   background: #171a1c;
@@ -62,6 +68,75 @@ a:hover {
   margin: 0;
 }
 
+.button {
+  outline: none !important;
+  border: none !important;
+  box-shadow: 0px 0px 12px #22262a !important;
+  background: linear-gradient(to bottom, #5c6870, #505b62);
+  border-radius: 20px;
+  padding: 4px 12px;
+  transition: all 0.25s;
+}
+.button:hover {
+  box-shadow: 0px 0px 12px #5b6671 !important;
+}
+.button:active,
+.button:focus {
+  background: linear-gradient(to bottom, #505b62, #454e54);
+}
+
+.button-green {
+  background: linear-gradient(to bottom, #20b2aa, #1b9891);
+}
+.button-green:active,
+.button-green:focus {
+  background: linear-gradient(to bottom, #1fada6, #17827d);
+}
+
+.button-red {
+  background: linear-gradient(to bottom, #d92626, #bf2222);
+}
+.button-red:active,
+.button-red:focus {
+  background: linear-gradient(to bottom, #b22020, #981b1b);
+}
+
+.button-round {
+  border-radius: 50%;
+  padding: 4px;
+  min-width: 38px !important;
+  min-height: 38px !important;
+  width: 38px !important;
+  height: 38px !important;
+  max-width: 38px !important;
+  max-height: 38px !important;
+}
+
+.button-round-large {
+  border-radius: 50%;
+  padding: 4px;
+  min-width: 50px !important;
+  min-height: 50px !important;
+  width: 50px !important;
+  height: 50px !important;
+  max-width: 50px !important;
+  max-height: 50px !important;
+}
+
+.textbox {
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  background: linear-gradient(to bottom, #fff, #ccc);
+  box-shadow: 0px 0px 12px #22262a;
+  padding: 4px 12px;
+  transition: all 0.25s;
+}
+.textbox:hover,
+.textbox:focus {
+  box-shadow: 0px 0px 12px #5b6671;
+}
+
 .header-link {
   margin: 0px 6px;
   transition: all 0.1s;
@@ -78,4 +153,33 @@ a:hover {
 .header-link:active {
   background: #00000055;
   border: 1px solid #00000088;
+}
+
+.page-scroll-container {
+  margin-top: 56px;
+  width: 100vw;
+  height: calc((var(--vh, 1vh) * 100) - 56px);
+  overflow-y: auto;
+}
+
+.modal {
+  backdrop-filter: blur(6px);
+}
+
+.modal-content {
+  backdrop-filter: blur(6px);
+  background: linear-gradient(to bottom, #394146aa, #2e3438aa);
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0px 0px 20px 10px #00000055;
+}
+
+.modal-header,
+.modal-body,
+.modal-footer {
+  border-color: #777;
+}
+
+.navbar-brand {
+  font-weight: 200;
 }

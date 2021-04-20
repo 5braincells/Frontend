@@ -1,7 +1,6 @@
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./Landing.css";
-import Card from "react-bootstrap/Card";
 import CountUp from "react-countup";
 import VisibilitySensor from "react-visibility-sensor";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -10,8 +9,8 @@ import * as fab from '@fortawesome/free-brands-svg-icons'
 
 function Landing() {
     return (
-        <div className='page-content'>
-            <div className='inner-content'>
+      <div className='page-scroll-container'>
+            <div className='page-content'>
                 <div>
                     <h1 className="title-main">
                         Studyrooms
@@ -26,7 +25,7 @@ function Landing() {
                     <Col sm={6} lg={3}>
                         <div className="card card-people">
                             <div>
-                                <img className="user-img" src="default-avatar.png"/>
+                                <img className="user-img" src="default-avatar.png" alt=""/>
                             </div>
                             <div>
                                 <h3>John Doe</h3>
@@ -43,7 +42,7 @@ function Landing() {
                     <Col sm={6} lg={3}>
                         <div className="card card-people">
                             <div>
-                                <img className="user-img" src="default-avatar.png"/>
+                                <img className="user-img" src="default-avatar.png" alt=""/>
                             </div>
                             <div>
                                 <h3>John Doe</h3>
@@ -60,7 +59,7 @@ function Landing() {
                     <Col sm={6} lg={3}>
                         <div className="card card-people">
                             <div>
-                                <img className="user-img" src="default-avatar.png"/>
+                                <img className="user-img" src="default-avatar.png" alt=""/>
                             </div>
                             <div>
                                 <h3>John Doe</h3>
@@ -77,7 +76,7 @@ function Landing() {
                     <Col sm={6} lg={3}>
                         <div className="card card-people">
                             <div>
-                                <img className="user-img" src="default-avatar.png"/>
+                                <img className="user-img" src="default-avatar.png" alt=""/>
                             </div>
                             <div>
                                 <h3>John Doe</h3>
@@ -96,7 +95,7 @@ function Landing() {
                 <h1 className="heading">Features</h1>
                 <Row>
                     <Col sm={4}>
-                        <div className="card-fill">
+                        <div className='card-fill'>
                             <h2> Great for any student </h2>
                             <p className="mt-auto mb-auto">
                                 We offer help for all high school students
@@ -201,7 +200,7 @@ function Landing() {
                     <Col sm={6} md={4}>
                         <div className="card card-people">
                             <div>
-                                <img className="user-img" src="default-avatar.png"/>
+                                <img className="user-img" src="default-avatar.png" alt=""/>
                             </div>
                             <div>
                                 <h3>John Doe</h3>
@@ -218,7 +217,7 @@ function Landing() {
                     <Col sm={6} md={4}>
                         <div className="card card-people">
                             <div>
-                                <img className="user-img" src="default-avatar.png"/>
+                                <img className="user-img" src="default-avatar.png" alt=""/>
                             </div>
                             <div>
                                 <h3>John Doe</h3>
@@ -235,7 +234,7 @@ function Landing() {
                     <Col sm={6} md={4}>
                         <div className="card card-people">
                             <div>
-                                <img className="user-img" src="default-avatar.png"/>
+                                <img className="user-img" src="default-avatar.png" alt=""/>
                             </div>
                             <div>
                                 <h3>John Doe</h3>
@@ -252,7 +251,7 @@ function Landing() {
                     <Col sm={6} md={4}>
                         <div className="card card-people">
                             <div>
-                                <img className="user-img" src="default-avatar.png"/>
+                                <img className="user-img" src="default-avatar.png" alt=""/>
                             </div>
                             <div>
                                 <h3>John Doe</h3>
@@ -269,7 +268,7 @@ function Landing() {
                     <Col sm={6} md={4}>
                         <div className="card card-people">
                             <div>
-                                <img className="user-img" src="default-avatar.png"/>
+                                <img className="user-img" src="default-avatar.png" alt=""/>
                             </div>
                             <div>
                                 <h3>John Doe</h3>

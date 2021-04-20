@@ -50,6 +50,7 @@ export default function Register() {
             name='email'
             type='email'
             placeholder='Email Address'
+            className='textbox'
             ref={register({ required: true })}
           />
           {errors.email && errors.email.type === 'required' && (
@@ -61,6 +62,7 @@ export default function Register() {
             name='password'
             type='password'
             placeholder='Password'
+            className='textbox'
             ref={register({ required: true })}
           />
           {errors.password && errors.password.type === 'required' && (
@@ -74,7 +76,7 @@ export default function Register() {
             onChange={handleChange}
           />
         </Form.Group>
-        <Button block variant='primary' type='submit'>
+        <Button block className='button button-green' type='submit'>
           Log In
         </Button>
       </Form>

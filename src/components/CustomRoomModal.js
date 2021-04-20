@@ -26,17 +26,18 @@ export default function CustomRoomModal({ show, onHide, handleclosebutton }) {
   return (
     <Modal show={show} onHide={() => onHide}>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <Modal.Header style={{ backgroundColor: '#343a40' }}>
+        <Modal.Header>
           <Modal.Title>Create a custom studyroom</Modal.Title>
         </Modal.Header>
 
-        <Modal.Body style={{ backgroundColor: '#343a40' }}>
+        <Modal.Body>
           <Form.Group controlId='formStudyroomName'>
             <Form.Label>Studyroom Name</Form.Label>
             <Form.Control
               name='studyroomName'
               type='text'
               placeholder='Enter studyroom name'
+              className='textbox'
               ref={register({ required: true, validate: hasSpaces })}
             />
             {errors.studyroomName &&
@@ -52,11 +53,11 @@ export default function CustomRoomModal({ show, onHide, handleclosebutton }) {
           </Form.Group>
         </Modal.Body>
 
-        <Modal.Footer style={{ backgroundColor: '#343a40' }}>
-          <Button variant='secondary' onClick={handleclosebutton}>
+        <Modal.Footer>
+          <Button className='button' onClick={handleclosebutton}>
             Close
           </Button>
-          <Button variant='primary' type='submit'>
+          <Button className='button button-green' type='submit'>
             Create
           </Button>
         </Modal.Footer>
