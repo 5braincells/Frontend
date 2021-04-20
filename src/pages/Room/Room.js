@@ -8,6 +8,7 @@ import Peer from 'simple-peer'
 import './Room.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as Icons from '@fortawesome/free-solid-svg-icons'
+import SettingsModal from '../../components/SettingsModal'
 
 const Video = props => {
   const ref = useRef()
@@ -31,6 +32,7 @@ const Room = props => {
   const [peers, setPeers] = useState([])
   const [muted, setMuted] = useState(false)
   const [video, setVideo] = useState(false)
+  const [modalShow, setModalShow] = useState(false)
   const socketRef = useRef()
   const userVideo = useRef()
   const peersRef = useRef([])
@@ -142,7 +144,7 @@ const Room = props => {
   }
 
   const handleMute = event => {
-    event.preventDefault()
+    event?.preventDefault()
     userVideo.current.srcObject
       .getAudioTracks()
       .forEach(track => (track.enabled = !track.enabled))
@@ -150,7 +152,7 @@ const Room = props => {
   }
 
   const handleVideo = event => {
-    event.preventDefault()
+    event?.preventDefault()
     userVideo.current.srcObject.getTracks().forEach(track => {
       if (track.kind !== 'audio') track.enabled = !track.enabled
     })
@@ -162,8 +164,42 @@ const Room = props => {
     history.goBack()
   }
 
+  const changeDevices = devices => {
+    var mediaParams = {
+      audio: { deviceId: devices.input.deviceId },
+      video: { deviceId: devices.video.deviceId },
+    }
+
+    navigator.mediaDevices
+      .getUserMedia(mediaParams)
+      .then(stream => {
+        userVideo.current.srcObject = stream
+
+        if (video)
+          userVideo.current.srcObject.getTracks().forEach(track => {
+            if (track.kind !== 'audio') track.enabled = !track.enabled
+          })
+        if (muted)
+          userVideo.current.srcObject
+            .getAudioTracks()
+            .forEach(track => (track.enabled = !track.enabled))
+      })
+      .catch(e => {
+        if (e.message === 'Could not start video source')
+          alert(
+            'Make sure the devices you picked are not used by any other software.'
+          )
+      })
+  }
+
   return (
     <div className='room-container'>
+      <SettingsModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        handleclosebutton={() => setModalShow(false)}
+        changedevices={changeDevices}
+      />
       <div className='video-grid'>
         <video
           className='video-item'
@@ -207,6 +243,21 @@ const Room = props => {
           <FontAwesomeIcon
             color='#fff'
             icon={Icons.faPhoneSlash}
+            size='lg'
+          />
+        </Button>
+        <Button
+          className='button button-round-large mr-1 ml-1'
+          type='submit'
+          variant='light'
+          onClick={e => {
+            e.preventDefault()
+            setModalShow(true)
+          }}>
+          <FontAwesomeIcon
+            style={{ paddingRight: '2px' }}
+            color='#fff'
+            icon={Icons.faCog}
             size='lg'
           />
         </Button>
