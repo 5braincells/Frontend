@@ -182,6 +182,20 @@ const Room = props => {
           userVideo.current.srcObject
             .getAudioTracks()
             .forEach(track => (track.enabled = !track.enabled))
+
+        const peersArr = [...peers]
+        peersArr.forEach(peerObj => {
+          const peer = createPeer(peerObj.peerID, socketRef.current.id, stream)
+          peersRef.current.push({
+            peerID: peerObj.peerID,
+            peer,
+          })
+          peersArr.push({
+            peerID: peerObj.peerID,
+            peer,
+          })
+        })
+        setPeers(peersArr)
       })
       .catch(e => {
         if (e.message === 'Could not start video source')
