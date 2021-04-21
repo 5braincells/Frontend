@@ -62,8 +62,16 @@ const Room = props => {
           })
           setPeers(peers)
         })
-
         socketRef.current.on('user joined', payload => {
+          const peerIndex = peersRef.current.findIndex(
+            peer => peer.peerID === payload.callerID
+          )
+          if (peerIndex > -1) {
+            let peersArr = [...peers]
+            peersArr.splice(peerIndex, 1)
+            setPeers([...peersArr])
+            peersRef.current = [...peersArr]
+          }
           const peer = addPeer(payload.signal, payload.callerID, stream)
           peersRef.current.push({
             peerID: payload.callerID,
@@ -183,19 +191,16 @@ const Room = props => {
             .getAudioTracks()
             .forEach(track => (track.enabled = !track.enabled))
 
-        const peersArr = [...peers]
-        peersArr.forEach(peerObj => {
+        const newPeers = []
+        peers.forEach(peerObj => {
           const peer = createPeer(peerObj.peerID, socketRef.current.id, stream)
-          peersRef.current.push({
-            peerID: peerObj.peerID,
-            peer,
-          })
-          peersArr.push({
+          newPeers.push({
             peerID: peerObj.peerID,
             peer,
           })
         })
-        setPeers(peersArr)
+        peersRef.current = [...newPeers]
+        setPeers(newPeers)
       })
       .catch(e => {
         if (e.message === 'Could not start video source')
