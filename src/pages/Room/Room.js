@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useHistory, useParams } from 'react-router'
-import { Button } from 'react-bootstrap'
 
 import io from 'socket.io-client'
 import Peer from 'simple-peer'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form, Modal } from 'react-bootstrap'
+import { Form, Modal } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router'
 
