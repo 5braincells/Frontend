@@ -53,21 +53,19 @@ function Landing() {
           </div>
 
           {jwt ? (
-            <Row className='justify-content-center'>
-              <Col md={12} lg={7} className='text-center-w1000'>
-                <h2 className='text-act-now'>
-                  You're already logged in, you might want to go to the
-                  Categories.
-                </h2>
-              </Col>
-              <Col md={12} lg={1} className='text-center'>
+            <div>
+              <h2 className='text-act-now'>
+                You're already logged in, you might want to go to the
+                Categories.
+              </h2>
+              <div className='text-center'>
                 <button
                   className='button button-green button-act-now'
                   onClick={gotoCategories}>
                   Categories
                 </button>
-              </Col>
-            </Row>
+              </div>
+            </div>
           ) : (
             ''
           )}
@@ -334,20 +332,18 @@ function Landing() {
           {jwt ? (
             ''
           ) : (
-            <Row className='justify-content-center mt-4'>
-              <Col md={12} lg={5}>
-                <h2 className='text-act-now text-center'>
-                  So, what do you think? Join us today!
-                </h2>
-              </Col>
-              <Col md={12} lg={1} className='text-center'>
+            <div>
+              <h2 className='text-act-now'>
+                So, what do you think? Join us today!
+              </h2>
+              <div className='text-center'>
                 <button
                   className='button button-green button-act-now'
                   onClick={gotoRegister}>
                   Register
                 </button>
-              </Col>
-            </Row>
+              </div>
+            </div>
           )}
 
           <h1 className='heading'>Contact us</h1>
