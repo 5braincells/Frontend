@@ -182,18 +182,8 @@ h5 {
   }
 }
 
-@media screen and (max-width: 1000px) {
-  .text-act-now {
-    text-align: center !important;
-    margin-bottom: 0px !important;
-  }
-
-  .button-act-now {
-    text-align: center !important;
-  }
-}
-
 .text-act-now {
+  text-align: center;
   margin: 36px 0px;
 }
 
@@ -201,7 +191,7 @@ h5 {
   font-size: 2rem;
   font-weight: 200;
   padding: 6px 18px;
-  margin: 26px 0px;
+  margin-bottom: 26px;
 }
 
 .loading-box {
