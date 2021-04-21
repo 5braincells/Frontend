@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Form, Modal } from 'react-bootstrap'
+import { Form, Modal } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 
 export default function SettingsModal({

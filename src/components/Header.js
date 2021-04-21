@@ -20,9 +20,13 @@ export default function Header() {
       <Navbar.Toggle aria-controls='basic-navbar-nav' />
       <Navbar.Collapse id='basic-navbar-nav'>
         <Nav className='mr-auto'>
-          <Link to='/categories' className='header-link'>
-            Categories
-          </Link>
+          {jwt ? (
+            <Link to='/categories' className='header-link'>
+              Categories
+            </Link>
+          ) : (
+            <></>
+          )}
         </Nav>
         <Nav>
           {jwt ? (

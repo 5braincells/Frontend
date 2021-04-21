@@ -13,6 +13,7 @@ export default function Register() {
   const { register, handleSubmit, errors } = useForm()
   const history = useHistory()
   const dispatch = useDispatch()
+  const [error, setError] = useState(null)
 
   const onSubmit = data => {
     const apidata = { userData: data }
@@ -35,7 +36,10 @@ export default function Register() {
           history.push('/categories')
         }
       })
-      .catch(e => console.log(e))
+      .catch(e => {
+        console.log(e.response)
+        setError(e)
+      })
   }
 
   const arePasswordsTheSame = value => {
@@ -143,6 +147,11 @@ export default function Register() {
         <Button block className='button button-green' type='submit'>
           Register
         </Button>
+        {error && (
+          <Form.Text className='form-error text-center'>
+            {error.response.data.reason}
+          </Form.Text>
+        )}
       </Form>
       <br />
       <p>

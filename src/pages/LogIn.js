@@ -13,14 +13,13 @@ export default function Register() {
   const [remember, setRemember] = useState(false)
   const history = useHistory()
   const dispatch = useDispatch()
+  const [error, setError] = useState(null)
 
   const handleChange = () => setRemember(!remember)
 
   const onSubmit = data => {
-    const apidata = { userData: data }
-
     axios
-      .post(ip + '/login', apidata)
+      .post(ip + '/login', { userData: data })
       .then(response => {
         if (response.status === 200) {
           localStorage.setItem('remember', remember)
@@ -37,7 +36,10 @@ export default function Register() {
           history.push('/categories')
         }
       })
-      .catch(e => console.log(e))
+      .catch(e => {
+        console.log(e.response)
+        setError(e)
+      })
   }
 
   return (
@@ -79,6 +81,11 @@ export default function Register() {
         <Button block className='button button-green' type='submit'>
           Log In
         </Button>
+        {error && (
+          <Form.Text className='form-error text-center'>
+            {error.response.data.reason}
+          </Form.Text>
+        )}
       </Form>
       <br />
       <p>

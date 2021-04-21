@@ -96,7 +96,7 @@ export default function Message({ message }) {
             />
           </>
         ) : (
-          <div class='message-file'>
+          <div className='message-file'>
             <FontAwesomeIcon
               style={{ marginRight: '4px', height: '1.2rem', width: '1.2rem' }}
               color='#fff'
