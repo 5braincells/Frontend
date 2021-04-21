@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useHistory, useParams } from 'react-router'
-import { Button } from 'react-bootstrap'
 
 import io from 'socket.io-client'
 import Peer from 'simple-peer'
@@ -214,7 +213,9 @@ const Room = props => {
       </div>
       <div className='room-buttons'>
         <button
-          className={`button ${muted ? 'button-red' : 'button-green'} button-round-large mr-1 ml-1`}
+          className={`button ${
+            muted ? 'button-red' : 'button-green'
+          } button-round-large mr-1 ml-1`}
           type='submit'
           title={muted ? 'Enable Voice' : 'Disable Voice'}
           onClick={handleMute}>
@@ -225,7 +226,9 @@ const Room = props => {
           />
         </button>
         <button
-          className={`button ${video ? 'button-red' : 'button-green'} button-round-large mr-1 ml-1`}
+          className={`button ${
+            video ? 'button-red' : 'button-green'
+          } button-round-large mr-1 ml-1`}
           type='submit'
           title={video ? 'Enable Video' : 'Disable Video'}
           onClick={handleVideo}>
@@ -240,11 +243,7 @@ const Room = props => {
           type='submit'
           title='Leave Call'
           onClick={handleLeave}>
-          <FontAwesomeIcon
-            color='#fff'
-            icon={Icons.faPhoneSlash}
-            size='lg'
-          />
+          <FontAwesomeIcon color='#fff' icon={Icons.faPhoneSlash} size='lg' />
         </button>
         <button
           className='button button-round-large mr-1 ml-1'

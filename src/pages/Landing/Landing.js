@@ -20,7 +20,7 @@ function Landing() {
 
   const getData = async () => {
     try {
-      const response = await axios
+      await axios
         .get(process.env.REACT_APP_IP + '/generalData')
         .then(res => setData(res.data))
       setIsLoading(true)
@@ -367,7 +367,7 @@ function Landing() {
           </div>
         </div>
       ) : (
-        <div class="loading-box">
+        <div className='loading-box'>
           <Spinner animation='border' />
         </div>
       )}
