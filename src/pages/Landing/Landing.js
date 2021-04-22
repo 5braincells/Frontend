@@ -52,7 +52,7 @@ function Landing() {
             </p>
           </div>
 
-          {jwt ? (
+          {jwt && (
             <div>
               <h2 className='text-act-now'>
                 You're already logged in, you might want to go to the
@@ -66,8 +66,6 @@ function Landing() {
                 </button>
               </div>
             </div>
-          ) : (
-            ''
           )}
 
           <h1 className='heading'>What we do</h1>
@@ -329,9 +327,7 @@ function Landing() {
             </Col>
           </Row>
 
-          {jwt ? (
-            ''
-          ) : (
+          {!jwt && (
             <div>
               <h2 className='text-act-now'>
                 So, what do you think? Join us today!
