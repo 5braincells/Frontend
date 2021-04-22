@@ -71,6 +71,8 @@
   padding-bottom: 8px;
   max-width: 100%;
   border-top: 1pt solid gray;
+  overflow-y: auto;
+  height: calc((var(--vh, 1vh) * 100) - 56px);
 }
 
 .categories-left .categories-item {
