@@ -12,11 +12,11 @@ import {
   Landing,
   LogIn,
   Register,
+  RoomSettings,
   Room,
 } from './pages'
 
 export default function App() {
-
   let vh = window.innerHeight * 0.01
   document.documentElement.style.setProperty('--vh', `${vh}px`)
   window.addEventListener('resize', () => {
@@ -34,6 +34,11 @@ export default function App() {
 
         <PrivateRoute exact path='/categories' component={Categories} />
         <PrivateRoute exact path='/categories/:category' component={Chatroom} />
+        <PrivateRoute
+          exact
+          path='/room/settings/:roomID'
+          component={RoomSettings}
+        />
         <PrivateRoute exact path='/room/:roomID' component={Room} />
         <Route path='' component={Error} />
       </Switch>

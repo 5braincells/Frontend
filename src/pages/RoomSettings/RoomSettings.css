@@ -1,0 +1,25 @@
+.room-settings-container {
+  margin-top: 56px;
+}
+
+.room-settings {
+  display: flex;
+  flex-direction: row;
+}
+
+.video {
+  width: 50%;
+  height: auto;
+}
+
+.loading-box {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  width: 100vw;
+  display: flex;
+  text-align: center;
+}

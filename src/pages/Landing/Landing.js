@@ -14,7 +14,7 @@ import * as fab from '@fortawesome/free-brands-svg-icons'
 
 function Landing() {
   const [data, setData] = useState(null)
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const jwt = useSelector(state => state?.jwt?.jwt)
   const history = useHistory()
 
@@ -23,7 +23,7 @@ function Landing() {
       await axios
         .get(process.env.REACT_APP_IP + '/generalData')
         .then(res => setData(res.data))
-      setIsLoading(true)
+      setIsLoading(false)
     } catch (e) {
       console.log(e)
     }
@@ -43,7 +43,7 @@ function Landing() {
 
   return (
     <div className='page-scroll-container'>
-      {isLoading ? (
+      {!isLoading ? (
         <div className='page-content'>
           <div>
             <h1 className='title-main'>Studyrooms</h1>
