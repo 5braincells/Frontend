@@ -17,24 +17,19 @@ export default function Chatroom({ chatroom }) {
 
   const createCall = event => {
     event.preventDefault()
-    history.push(`/room/${chatroom.id + user.grade}`)
+    history.push(`/room/settings/${chatroom.id + user.grade}`)
   }
 
   return (
     <div className='chatroom-header'>
       <button
         style={{
-          margin: '0px 12px 0px 0px'
+          margin: '0px 12px 0px 0px',
         }}
         className='header-link'
         onClick={handleClick}
-        title='Go Back'
-        >
-        <FontAwesomeIcon
-          color='#fff'
-          icon={Icons.faArrowLeft}
-          size='lg'
-        />
+        title='Go Back'>
+        <FontAwesomeIcon color='#fff' icon={Icons.faArrowLeft} size='lg' />
       </button>
       <img
         src={chatroom.picture}
@@ -46,7 +41,7 @@ export default function Chatroom({ chatroom }) {
       <span className='chatroom-header-title'>{chatroom.name}</span>
       <button
         style={{
-          margin: '0px'
+          margin: '0px',
         }}
         className='header-link mr-3 ml-auto'
         onClick={createCall}
