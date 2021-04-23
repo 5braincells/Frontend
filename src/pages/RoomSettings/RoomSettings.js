@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Form, Spinner } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
-import { useHistory, useParams } from 'react-router'
+import { useHistory } from 'react-router'
 
 import './RoomSettings.css'
+import { Room } from '../../pages'
 
 export default function RoomSettings() {
   const userVideo = useRef()
@@ -14,8 +15,8 @@ export default function RoomSettings() {
   const { register, handleSubmit } = useForm()
 
   const [isLoading, setIsLoading] = useState(true)
+  const [ready, setReady] = useState(false)
 
-  const { roomID } = useParams()
   const history = useHistory()
 
   useEffect(() => {
@@ -52,7 +53,6 @@ export default function RoomSettings() {
       await navigator.mediaDevices
         .getUserMedia(constraints)
         .then(stream => {
-          console.log('a')
           setIsLoading(false)
           tracks.current = stream.getTracks()
           userVideo.current.srcObject = stream
@@ -60,7 +60,6 @@ export default function RoomSettings() {
         .catch(e => {
           console.log(e)
         })
-      console.log(devices)
     }
     getMediaDevices()
     return () => {
@@ -68,6 +67,7 @@ export default function RoomSettings() {
         track.stop()
       })
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const changePreview = (newDeviceLabel, newDeviceType) => {
@@ -117,59 +117,66 @@ export default function RoomSettings() {
   }
 
   const onSubmit = data => {
-    const devices = {
+    setCurrDevices({
       video: videoDevices.find(device => device.label === data.video).deviceId,
       audio: audioDevices.find(device => device.label === data.audio).deviceId,
-    }
-    localStorage.setItem('devices', JSON.stringify(devices))
-    history.replace(`/room/${roomID}`)
+    })
+    setReady(true)
   }
 
-  return (
-    <div className='room-settings-container'>
-      {!isLoading ? (
-        <div className='room-settings'>
-          <video className='video' muted ref={userVideo} autoPlay playsInline />
-          <Form onSubmit={handleSubmit(onSubmit)}>
-            <h3>Video</h3>
-            <Form.Group controlId='formVideoDevice'>
-              <Form.Control
-                name='video'
-                as='select'
-                custom
-                className='textbox'
-                onChange={event => changePreview(event.target.value, 'video')}
-                ref={register({ required: true })}>
-                {videoDevices.map(device => (
-                  <option key={device.deviceId}>{device.label}</option>
-                ))}
-              </Form.Control>
-            </Form.Group>
-            <h3>Audio</h3>
-            <Form.Group controlId='formAudioDevice'>
-              <Form.Control
-                name='audio'
-                as='select'
-                custom
-                className='textbox'
-                onChange={event => changePreview(event.target.value, 'audio')}
-                ref={register({ required: true })}>
-                {audioDevices.map(device => (
-                  <option key={device.deviceId}>{device.label}</option>
-                ))}
-              </Form.Control>
-            </Form.Group>
+  if (!ready)
+    return (
+      <div className='room-settings-container'>
+        {!isLoading ? (
+          <div className='room-settings'>
+            <video
+              className='video'
+              muted
+              ref={userVideo}
+              autoPlay
+              playsInline
+            />
+            <Form onSubmit={handleSubmit(onSubmit)}>
+              <h3>Video</h3>
+              <Form.Group controlId='formVideoDevice'>
+                <Form.Control
+                  name='video'
+                  as='select'
+                  custom
+                  className='textbox'
+                  onChange={event => changePreview(event.target.value, 'video')}
+                  ref={register({ required: true })}>
+                  {videoDevices.map(device => (
+                    <option key={device.deviceId}>{device.label}</option>
+                  ))}
+                </Form.Control>
+              </Form.Group>
+              <h3>Audio</h3>
+              <Form.Group controlId='formAudioDevice'>
+                <Form.Control
+                  name='audio'
+                  as='select'
+                  custom
+                  className='textbox'
+                  onChange={event => changePreview(event.target.value, 'audio')}
+                  ref={register({ required: true })}>
+                  {audioDevices.map(device => (
+                    <option key={device.deviceId}>{device.label}</option>
+                  ))}
+                </Form.Control>
+              </Form.Group>
 
-            <button className='button button-green' type='submit'>
-              Save
-            </button>
-          </Form>
-        </div>
-      ) : (
-        <div className='loading-box'>
-          <Spinner animation='border' />
-        </div>
-      )}
-    </div>
-  )
+              <button className='button button-green' type='submit'>
+                Save
+              </button>
+            </Form>
+          </div>
+        ) : (
+          <div className='loading-box'>
+            <Spinner animation='border' />
+          </div>
+        )}
+      </div>
+    )
+  else return <Room devices={currDevices} />
 }

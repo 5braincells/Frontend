@@ -13,7 +13,6 @@ import {
   LogIn,
   Register,
   RoomSettings,
-  Room,
 } from './pages'
 
 export default function App() {
@@ -34,12 +33,7 @@ export default function App() {
 
         <PrivateRoute exact path='/categories' component={Categories} />
         <PrivateRoute exact path='/categories/:category' component={Chatroom} />
-        <PrivateRoute
-          exact
-          path='/room/settings/:roomID'
-          component={RoomSettings}
-        />
-        <PrivateRoute exact path='/room/:roomID' component={Room} />
+        <PrivateRoute exact path='/room/:roomID' component={RoomSettings} />
         <Route path='' component={Error} />
       </Switch>
     </Router>

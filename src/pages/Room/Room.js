@@ -21,7 +21,9 @@ const Video = props => {
   return <video className='video-item' playsInline autoPlay ref={ref} />
 }
 
-export default function Room() {
+export default function Room({ devices }) {
+  const history = useHistory()
+  const { roomID } = useParams()
   const [peers, setPeers] = useState([])
   const peersRef = useRef([])
   const userVideo = useRef()
@@ -31,11 +33,7 @@ export default function Room() {
   const [muted, setMuted] = useState(false)
   const [video, setVideo] = useState(false)
 
-  const history = useHistory()
-  const { roomID } = useParams()
-
   useEffect(() => {
-    const devices = JSON.parse(localStorage.getItem('devices'))
     const constraints = {
       video: {
         deviceId: devices.video,
