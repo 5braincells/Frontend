@@ -17,7 +17,7 @@ export default function Chatroom({ chatroom }) {
 
   const createCall = event => {
     event.preventDefault()
-    history.push(`/room/settings/${chatroom.id + user.grade}`)
+    history.push(`/room/${chatroom.id + user.grade}`)
   }
 
   return (
