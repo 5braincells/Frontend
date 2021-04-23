@@ -21,9 +21,14 @@ export default function Header() {
       <Navbar.Collapse id='basic-navbar-nav'>
         <Nav className='mr-auto'>
           {jwt ? (
-            <Link to='/categories' className='header-link'>
-              Categories
-            </Link>
+            <>
+              <Link to='/profile' className='header-link'>
+                Profile
+              </Link>
+              <Link to='/categories' className='header-link'>
+                Categories
+              </Link>
+            </>
           ) : (
             <></>
           )}
