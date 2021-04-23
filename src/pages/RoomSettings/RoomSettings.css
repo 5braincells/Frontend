@@ -23,3 +23,7 @@
   display: flex;
   text-align: center;
 }
+
+video::-webkit-media-controls {
+  display: none;
+}
