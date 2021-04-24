@@ -21,7 +21,7 @@ const Video = props => {
   return <video className='video-item' playsInline autoPlay ref={ref} />
 }
 
-export default function Room({ devices }) {
+export default function Room({ devices, disableaudio, disablevideo }) {
   const history = useHistory()
   const { roomID } = useParams()
   const [peers, setPeers] = useState([])
@@ -30,8 +30,8 @@ export default function Room({ devices }) {
   const tracks = useRef()
   const socketRef = useRef()
 
-  const [muted, setMuted] = useState(false)
-  const [video, setVideo] = useState(false)
+  const [muted, setMuted] = useState(disableaudio)
+  const [video, setVideo] = useState(disablevideo)
 
   useEffect(() => {
     const constraints = {
@@ -46,6 +46,14 @@ export default function Room({ devices }) {
     navigator.mediaDevices.getUserMedia(constraints).then(stream => {
       tracks.current = stream.getTracks()
       userVideo.current.srcObject = stream
+      if (muted) {
+        handleMute()
+        setMuted(true)
+      }
+      if (video) {
+        handleVideo()
+        setVideo(true)
+      }
       socketRef.current.emit('join room', roomID)
       socketRef.current.on('all users', users => {
         const peers = []

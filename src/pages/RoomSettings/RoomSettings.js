@@ -12,6 +12,8 @@ export default function RoomSettings() {
   const [videoDevices, setVideoDevices] = useState([])
   const [audioDevices, setAudioDevices] = useState([])
   const [currDevices, setCurrDevices] = useState({})
+  const [disableAudio, setDisableAudio] = useState(false)
+  const [disableVideo, setDisableVideo] = useState(false)
   const { register, handleSubmit } = useForm()
 
   const [isLoading, setIsLoading] = useState(true)
@@ -121,6 +123,8 @@ export default function RoomSettings() {
       video: videoDevices.find(device => device.label === data.video).deviceId,
       audio: audioDevices.find(device => device.label === data.audio).deviceId,
     })
+    setDisableAudio(data.disableAudio)
+    setDisableVideo(data.disableVideo)
     setReady(true)
   }
 
@@ -165,7 +169,22 @@ export default function RoomSettings() {
                   ))}
                 </Form.Control>
               </Form.Group>
-
+              <Form.Group controlId='formDisableAudio'>
+                <Form.Label>Mute microphone</Form.Label>
+                <Form.Check
+                  name='disableAudio'
+                  type='switch'
+                  ref={register()}
+                />
+              </Form.Group>
+              <Form.Group controlId='formDisableVideo'>
+                <Form.Label>Disable camera</Form.Label>
+                <Form.Check
+                  name='disableVideo'
+                  type='switch'
+                  ref={register()}
+                />
+              </Form.Group>
               <button className='button button-green' type='submit'>
                 Save
               </button>
@@ -178,5 +197,12 @@ export default function RoomSettings() {
         )}
       </div>
     )
-  else return <Room devices={currDevices} />
+  else
+    return (
+      <Room
+        devices={currDevices}
+        disableaudio={disableAudio}
+        disablevideo={disableVideo}
+      />
+    )
 }
