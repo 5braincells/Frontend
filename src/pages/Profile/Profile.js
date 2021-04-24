@@ -30,7 +30,7 @@ export default function Profile() {
 
   return (
     <Container className='page-container'>
-      <h1>Change profile</h1>
+      <h1 className='mb-3'>Edit Profile</h1>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Form.Group controlId='formLastName'>
           <Form.Label>Last Name</Form.Label>
@@ -68,10 +68,10 @@ export default function Profile() {
             <option value='12'>Clasa a 12-a</option>
           </Form.Control>
         </Form.Group>
-        <Button className='button button-green' type='submit'>
-          Submit
+        <Button block className='button button-green' type='submit'>
+          Save
         </Button>
       </Form>
     </Container>
-  )
+  );
 }

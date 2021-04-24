@@ -14,30 +14,28 @@ export default function Header() {
 
   return (
     <Navbar bg='dark' variant='dark' expand='sm' fixed='top'>
-      <Navbar.Brand>
+      <Navbar.Brand style={{padding: '3px 0px 7px 0px', marginRight: '10px'}}>
         <Link to='/'>Studyrooms</Link>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls='basic-navbar-nav' />
       <Navbar.Collapse id='basic-navbar-nav'>
         <Nav className='mr-auto'>
+          {jwt && (
+            <Link to='/categories' className='header-link'>
+              Categories
+            </Link>
+          )}
+        </Nav>
+        <Nav>
           {jwt ? (
             <>
               <Link to='/profile' className='header-link'>
                 Profile
               </Link>
-              <Link to='/categories' className='header-link'>
-                Categories
+              <Link to='/' onClick={logOut} className='header-link'>
+                Log Out
               </Link>
             </>
-          ) : (
-            <></>
-          )}
-        </Nav>
-        <Nav>
-          {jwt ? (
-            <Link to='/' onClick={logOut} className='header-link'>
-              Log Out
-            </Link>
           ) : (
             <>
               <Link to='/register' className='header-link'>
