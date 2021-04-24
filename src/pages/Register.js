@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { useHistory, Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { Col, Form, Button, Container, Modal } from 'react-bootstrap'
-import { useDispatch } from 'react-redux'
 import axios from 'axios'
 
 const ip = process.env.REACT_APP_IP
