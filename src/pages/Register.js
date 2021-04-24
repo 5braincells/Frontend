@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useHistory, Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import { Col, Form, Button, Container } from 'react-bootstrap'
+import { Col, Form, Button, Container, Modal } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import axios from 'axios'
 
@@ -9,11 +9,13 @@ const ip = process.env.REACT_APP_IP
 
 export default function Register() {
   const [password, setPassword] = useState('')
-  const [type, setType] = useState('password')
-  const { register, handleSubmit, errors } = useForm()
-  const history = useHistory()
-  const dispatch = useDispatch()
   const [error, setError] = useState(null)
+  const [modalShow, setModalShow] = useState(false)
+  const [title, setTitle] = useState('')
+  const [type, setType] = useState('password')
+  const history = useHistory()
+
+  const { register, handleSubmit, errors } = useForm()
 
   const onSubmit = data => {
     const apidata = { userData: data }
@@ -22,18 +24,8 @@ export default function Register() {
       .post(ip + '/register', apidata)
       .then(response => {
         if (response.status === 200) {
-          localStorage.setItem('remember', false)
-          dispatch({
-            type: 'SIGNING',
-            jwt: response.data.jwt,
-            user: {
-              firstName: response.data.firstName,
-              lastName: response.data.lastName,
-              grade: response.data.grade,
-            },
-            remember: false,
-          })
-          history.push('/categories')
+          setTitle(response.data.response)
+          setModalShow(!modalShow)
         }
       })
       .catch(e => {
@@ -52,6 +44,22 @@ export default function Register() {
 
   return (
     <Container className='page-container'>
+      <Modal show={modalShow} centered>
+        <Modal.Header closeButton>
+          <Modal.Title id='contained-modal-title-vcenter'>{title}</Modal.Title>
+        </Modal.Header>
+        <Modal.Footer>
+          <Button
+            className='button'
+            onClick={e => {
+              e.preventDefault()
+              setModalShow(false)
+              history.push('/login')
+            }}>
+            Ok
+          </Button>
+        </Modal.Footer>
+      </Modal>
       <h3>Create your Studyrooms account</h3>
       <br />
       <Form onSubmit={handleSubmit(onSubmit)}>
