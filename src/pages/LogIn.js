@@ -47,40 +47,42 @@ export default function Register() {
       <h3>Log in to Studyrooms</h3>
       <br />
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <Form.Group controlId='formEmail'>
-          <Form.Control
-            name='email'
-            type='email'
-            placeholder='Email Address'
-            className='textbox'
-            ref={register({ required: true })}
-          />
-          {errors.email && errors.email.type === 'required' && (
-            <Form.Text className='form-error'>This is required</Form.Text>
-          )}
-        </Form.Group>
-        <Form.Group controlId='formPassword'>
-          <Form.Control
-            name='password'
-            type='password'
-            placeholder='Password'
-            className='textbox'
-            ref={register({ required: true })}
-          />
-          {errors.password && errors.password.type === 'required' && (
-            <Form.Text className='form-error'>This is required</Form.Text>
-          )}
-        </Form.Group>
-        <Form.Group>
-          <Form.Check
-            type='checkbox'
-            label='Remember me'
-            onChange={handleChange}
-          />
-        </Form.Group>
-        <Button block className='button button-green' type='submit'>
-          Log In
-        </Button>
+        <div style={{ maxWidth: '200px', margin: '0 auto' }}>
+          <Form.Group controlId='formEmail'>
+            <Form.Control
+              name='email'
+              type='email'
+              placeholder='Email Address'
+              className='textbox'
+              ref={register({ required: true })}
+            />
+            {errors.email && errors.email.type === 'required' && (
+              <Form.Text className='form-error'>This is required</Form.Text>
+            )}
+          </Form.Group>
+          <Form.Group controlId='formPassword'>
+            <Form.Control
+              name='password'
+              type='password'
+              placeholder='Password'
+              className='textbox'
+              ref={register({ required: true })}
+            />
+            {errors.password && errors.password.type === 'required' && (
+              <Form.Text className='form-error'>This is required</Form.Text>
+            )}
+          </Form.Group>
+          <Form.Group>
+            <Form.Check
+              type='checkbox'
+              label='Remember me'
+              onChange={handleChange}
+            />
+          </Form.Group>
+          <Button block className='button button-green' type='submit'>
+            Log In
+          </Button>
+        </div>
         {error && (
           <Form.Text className='form-error text-center'>
             {error.response.data.reason}
