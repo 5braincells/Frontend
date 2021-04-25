@@ -130,6 +130,12 @@
   margin: 0px 8px;
 }
 
+.message a {
+  overflow-wrap: break-word;
+  hyphens: auto;
+  line-break: auto;
+  max-width: 95%;
+}
 .message a:hover {
   text-decoration: underline;
 }
