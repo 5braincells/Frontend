@@ -23,31 +23,28 @@ let arr = []
 
 export default function Chatroom() {
   const { category } = useParams()
+  const chatroom = JSON.parse(localStorage.getItem('category'))
+  const jwt = useSelector(state => state?.jwt?.jwt)
+  const jwtDecoded = jwt_decode(jwt)
+  const userID = jwtDecoded.userID
+
+  const [key, setKey] = useState('')
   const [messages, setMessages] = useState([])
   const [message, setMessage] = useState('')
-  const [key, setKey] = useState('')
-  const chatroom = JSON.parse(localStorage.getItem('category'))
 
-  async function decryptmessage(message, decryptkey) {
-    var bytes = await CryptoJS.AES.decrypt(message, decryptkey)
-    var originalMessage = await bytes.toString(CryptoJS.enc.Utf8)
-    return originalMessage
-  }
-
-  const apidata = { category: category }
   useEffect(() => {
     let pusher
     axios
-      .post(serverlessIP, { category: category })
+      .post(serverlessIP, { category })
       .then(responsekey => {
         setKey(responsekey.data)
         axios
-          .post(ip + '/getMessages', apidata)
+          .post(ip + '/getMessages', { category })
           .then(response => {
             if (response.status === 200) {
               arr = response.data
               arr.forEach(element => {
-                if (responsekey.data) {
+                if (responsekey.data && element.type === 'msg') {
                   try {
                     var bytes = CryptoJS.AES.decrypt(
                       element.message,
@@ -101,9 +98,11 @@ export default function Chatroom() {
     }
   }, [category])
 
-  const jwt = useSelector(state => state?.jwt?.jwt)
-  const jwtDecoded = jwt_decode(jwt)
-  const userID = jwtDecoded.userID
+  async function decryptmessage(message, decryptkey) {
+    var bytes = await CryptoJS.AES.decrypt(message, decryptkey)
+    var originalMessage = await bytes.toString(CryptoJS.enc.Utf8)
+    return originalMessage
+  }
 
   const sendMessage = event => {
     if (message) {
