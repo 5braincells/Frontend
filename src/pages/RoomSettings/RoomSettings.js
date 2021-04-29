@@ -1,137 +1,136 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Form, Spinner, Collapse } from 'react-bootstrap';
-import { useForm } from 'react-hook-form';
-import { useHistory } from 'react-router';
+import React, { useEffect, useRef, useState } from 'react'
+import { Form, Spinner } from 'react-bootstrap'
+import { useForm } from 'react-hook-form'
+import { useHistory } from 'react-router'
 
-import './RoomSettings.css';
-import { Room } from '../../pages';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import * as Icons from '@fortawesome/free-solid-svg-icons';
+import './RoomSettings.css'
+import { Room } from '../../pages'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import * as Icons from '@fortawesome/free-solid-svg-icons'
 
 export default function RoomSettings() {
-  const userVideo = useRef();
-  const tracks = useRef();
-  const [videoDevices, setVideoDevices] = useState([]);
-  const [audioDevices, setAudioDevices] = useState([]);
-  const [currDevices, setCurrDevices] = useState({});
-  const [disableAudio, setDisableAudio] = useState(false);
-  const [disableVideo, setDisableVideo] = useState(false);
-  const { register, handleSubmit } = useForm();
-  const [settingsCollapsed, setSettingsCollapsed] = useState(false);
+  const userVideo = useRef()
+  const tracks = useRef()
+  const [videoDevices, setVideoDevices] = useState([])
+  const [audioDevices, setAudioDevices] = useState([])
+  const [currDevices, setCurrDevices] = useState({})
+  const [disableAudio, setDisableAudio] = useState(false)
+  const [disableVideo, setDisableVideo] = useState(false)
+  const { register, handleSubmit } = useForm()
+  const [settingsCollapsed, setSettingsCollapsed] = useState(false)
 
-  const [isLoading, setIsLoading] = useState(true);
-  const [ready, setReady] = useState(false);
+  const [isLoading, setIsLoading] = useState(true)
+  const [ready, setReady] = useState(false)
 
-  const history = useHistory();
+  const history = useHistory()
 
   useEffect(() => {
     async function getMediaDevices() {
+      console.log(navigator)
       await navigator.mediaDevices
         .getUserMedia({ video: true, audio: true })
-        .then((stream) => {
-          stream.getTracks().forEach((track) => track.stop());
+        .then(stream => {
+          stream.getTracks().forEach(track => track.stop())
         })
-        .catch((e) => {
+        .catch(e => {
           if (e.message === 'Permission denied') {
             // handle error
-            history.replace('/error');
-            return;
+            history.replace('/error')
+            return
           }
-        });
-      const devices = await navigator.mediaDevices.enumerateDevices();
+        })
+      const devices = await navigator.mediaDevices.enumerateDevices()
       if (devices[0].deviceId === '') {
       }
       setVideoDevices([
-        ...devices.filter((device) => device.kind === 'videoinput'),
-      ]);
+        ...devices.filter(device => device.kind === 'videoinput'),
+      ])
       setAudioDevices([
-        ...devices.filter((device) => device.kind === 'audioinput'),
-      ]);
+        ...devices.filter(device => device.kind === 'audioinput'),
+      ])
       const constraints = {
         video: { deviceId: videoDevices[0]?.deviceId },
         audio: { deviceId: audioDevices[0]?.deviceId },
-      };
+      }
       setCurrDevices({
         video: videoDevices[0]?.deviceId,
         audio: audioDevices[0]?.deviceId,
-      });
+      })
       await navigator.mediaDevices
         .getUserMedia(constraints)
-        .then((stream) => {
-          setIsLoading(false);
-          tracks.current = stream.getTracks();
-          userVideo.current.srcObject = stream;
+        .then(stream => {
+          setIsLoading(false)
+          tracks.current = stream.getTracks()
+          userVideo.current.srcObject = stream
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch(e => {
+          console.log(e)
+        })
     }
-    getMediaDevices();
+    getMediaDevices()
     return () => {
-      tracks.current?.forEach((track) => {
-        track.stop();
-      });
-    };
+      tracks.current?.forEach(track => {
+        track.stop()
+      })
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   const changePreview = (newDeviceLabel, newDeviceType) => {
     if (newDeviceType === 'video') {
       const newVideoDevice = videoDevices.find(
-        (device) => device.label === newDeviceLabel
-      ).deviceId;
+        device => device.label === newDeviceLabel
+      ).deviceId
       const constraints = {
         video: {
           deviceId: newVideoDevice,
         },
         audio: { deviceId: currDevices.audio },
-      };
+      }
       setCurrDevices({
         ...currDevices,
         video: newVideoDevice,
-      });
-      tracks.current.forEach((track) => {
-        track.stop();
-      });
-      navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
-        tracks.current = stream.getTracks();
-        userVideo.current.srcObject = stream;
-      });
+      })
+      tracks.current.forEach(track => {
+        track.stop()
+      })
+      navigator.mediaDevices.getUserMedia(constraints).then(stream => {
+        tracks.current = stream.getTracks()
+        userVideo.current.srcObject = stream
+      })
     } else if (newDeviceType === 'audio') {
       const newAudioDevice = audioDevices.find(
-        (device) => device.label === newDeviceLabel
-      ).deviceId;
+        device => device.label === newDeviceLabel
+      ).deviceId
       const constraints = {
         video: { deviceId: currDevices.video },
         audio: {
           deviceId: newAudioDevice,
         },
-      };
+      }
       setCurrDevices({
         ...currDevices,
         audio: newAudioDevice,
-      });
-      tracks.current.forEach((track) => {
-        track.stop();
-      });
-      navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
-        tracks.current = stream.getTracks();
-        userVideo.current.srcObject = stream;
-      });
+      })
+      tracks.current.forEach(track => {
+        track.stop()
+      })
+      navigator.mediaDevices.getUserMedia(constraints).then(stream => {
+        tracks.current = stream.getTracks()
+        userVideo.current.srcObject = stream
+      })
     }
-  };
+  }
 
-  const onSubmit = (data) => {
+  const onSubmit = data => {
     setCurrDevices({
-      video: videoDevices.find((device) => device.label === data.video)
-        .deviceId,
-      audio: audioDevices.find((device) => device.label === data.audio)
-        .deviceId,
-    });
-    setDisableAudio(data.disableAudio);
-    setDisableVideo(data.disableVideo);
-    setReady(true);
-  };
+      video: videoDevices.find(device => device.label === data.video).deviceId,
+      audio: audioDevices.find(device => device.label === data.audio).deviceId,
+    })
+    setDisableAudio(data.disableAudio)
+    setDisableVideo(data.disableVideo)
+    setReady(true)
+  }
 
   if (!ready)
     return (
@@ -218,11 +217,9 @@ export default function RoomSettings() {
                   as='select'
                   custom
                   className='textbox'
-                  onChange={(event) =>
-                    changePreview(event.target.value, 'video')
-                  }
+                  onChange={event => changePreview(event.target.value, 'video')}
                   ref={register({ required: true })}>
-                  {videoDevices.map((device) => (
+                  {videoDevices.map(device => (
                     <option key={device.deviceId}>{device.label}</option>
                   ))}
                 </Form.Control>
@@ -234,11 +231,9 @@ export default function RoomSettings() {
                   as='select'
                   custom
                   className='textbox'
-                  onChange={(event) =>
-                    changePreview(event.target.value, 'audio')
-                  }
+                  onChange={event => changePreview(event.target.value, 'audio')}
                   ref={register({ required: true })}>
-                  {audioDevices.map((device) => (
+                  {audioDevices.map(device => (
                     <option key={device.deviceId}>{device.label}</option>
                   ))}
                 </Form.Control>
@@ -251,7 +246,7 @@ export default function RoomSettings() {
           </div>
         )}
       </div>
-    );
+    )
   else
     return (
       <Room
@@ -259,5 +254,5 @@ export default function RoomSettings() {
         disableaudio={disableAudio}
         disablevideo={disableVideo}
       />
-    );
+    )
 }
