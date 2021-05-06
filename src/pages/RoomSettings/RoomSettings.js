@@ -26,7 +26,7 @@ export default function RoomSettings() {
 
   useEffect(() => {
     async function getMediaDevices() {
-      console.log(navigator)
+      await Notification.requestPermission()
       await navigator.mediaDevices
         .getUserMedia({ video: true, audio: true })
         .then(stream => {
@@ -153,7 +153,14 @@ export default function RoomSettings() {
                 } button-round mr-1 ml-1`}
                 type='button'
                 title={disableAudio ? 'Enable Voice' : 'Disable Voice'}
-                onClick={() => setDisableAudio(!disableAudio)}>
+                onClick={event => {
+                  event?.preventDefault()
+                  userVideo.current.srcObject
+                    .getAudioTracks()
+                    .forEach(track => (track.enabled = !track.enabled))
+                  setDisableAudio(!disableAudio)
+                  tracks.current = userVideo.current.srcObject.getTracks()
+                }}>
                 <FontAwesomeIcon
                   color='#fff'
                   icon={
@@ -180,7 +187,14 @@ export default function RoomSettings() {
                 } button-round mr-1 ml-1`}
                 type='button'
                 title={disableVideo ? 'Enable Video' : 'Disable Video'}
-                onClick={() => setDisableVideo(!disableVideo)}>
+                onClick={event => {
+                  event?.preventDefault()
+                  userVideo.current.srcObject.getTracks().forEach(track => {
+                    if (track.kind !== 'audio') track.enabled = !track.enabled
+                  })
+                  setDisableVideo(!disableVideo)
+                  tracks.current = userVideo.current.srcObject.getTracks()
+                }}>
                 <FontAwesomeIcon
                   color='#fff'
                   icon={disableVideo ? Icons.faVideoSlash : Icons.faVideo}
