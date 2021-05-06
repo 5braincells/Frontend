@@ -194,7 +194,7 @@ export default function Room({ devices, disableaudio, disablevideo }) {
             muted ? 'button-red' : 'button-green'
           } button-round-large mr-1 ml-1`}
           type='submit'
-          title={muted ? 'Enable Voice' : 'Disable Voice'}
+          title={muted ? 'Activează audio' : 'Dezactivează audio'}
           onClick={handleMute}>
           <FontAwesomeIcon
             color='#fff'
@@ -207,7 +207,7 @@ export default function Room({ devices, disableaudio, disablevideo }) {
             video ? 'button-red' : 'button-green'
           } button-round-large mr-1 ml-1`}
           type='submit'
-          title={video ? 'Enable Video' : 'Disable Video'}
+          title={video ? 'Activează video' : 'Dezactivează video'}
           onClick={handleVideo}>
           <FontAwesomeIcon
             color='#fff'
@@ -218,7 +218,7 @@ export default function Room({ devices, disableaudio, disablevideo }) {
         <button
           className='button button-red button-round-large mr-1 ml-1'
           type='submit'
-          title='Leave Call'
+          title='Părăsește conferință'
           onClick={handleLeave}>
           <FontAwesomeIcon color='#fff' icon={Icons.faPhoneSlash} size='lg' />
         </button>

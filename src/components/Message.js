@@ -65,7 +65,7 @@ export default function Message({ message }) {
           {userID === message.author ? (
             <button
               className='blank-button message-button'
-              title='Delete Message'
+              title='Șterge mesaj'
               onClick={handleDelete}>
               <FontAwesomeIcon color='#f00' icon={Icons.faTrash} />
             </button>

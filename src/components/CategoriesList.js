@@ -75,7 +75,7 @@ export default function CategoriesList() {
           className='categories-image'
           alt=''
         />
-        <span className='categories-item-title'>Custom studyroom</span>
+        <span className='categories-item-title'>Studyroom custom</span>
       </div>
       {categoriesList}
     </div>

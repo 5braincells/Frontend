@@ -55,20 +55,19 @@ function Landing() {
           {jwt && (
             <div>
               <h2 className='text-act-now'>
-                You're already logged in, you might want to go to the
-                Categories.
+                Ești deja conectat, poate dorești sa navighezi către Categorii.
               </h2>
               <div className='text-center'>
                 <button
                   className='button button-green button-act-now'
                   onClick={gotoCategories}>
-                  Categories
+                  Categorii
                 </button>
               </div>
             </div>
           )}
 
-          <h1 className='heading'>What we do</h1>
+          <h1 className='heading'>Ce facem noi</h1>
           <Row>
             <Col sm={6} lg={3}>
               <div className='card card-people'>
@@ -148,7 +147,7 @@ function Landing() {
             </Col>
           </Row>
 
-          <h1 className='heading'>Features</h1>
+          <h1 className='heading'>Feature-uri</h1>
           <Row>
             <Col sm={4}>
               <div className='card-fill'>
@@ -209,7 +208,9 @@ function Landing() {
                   </VisibilitySensor>
                 )}
               </CountUp>
-              <h3 className='ml-auto mr-auto text-center'>Registered Users</h3>
+              <h3 className='ml-auto mr-auto text-center'>
+                Utilizatori Înregistrați
+              </h3>
             </Col>
             <Col md={4} className='mt-5'>
               <CountUp end={data.messages} duration={3.75}>
@@ -223,12 +224,12 @@ function Landing() {
                 )}
               </CountUp>
               <h3 className='ml-auto mr-auto text-center'>
-                Total Messages Sent
+                Total Mesaje Trimise
               </h3>
             </Col>
           </Row>
 
-          <h1 className='heading'>The Team</h1>
+          <h1 className='heading'>Echipa</h1>
           <Row className='justify-content-center'>
             <Col sm={6} md={4}>
               <div className='card card-people'>
@@ -330,23 +331,23 @@ function Landing() {
           {!jwt && (
             <div>
               <h2 className='text-act-now'>
-                So, what do you think? Join us today!
+                Deci, ce crezi? Înregistrează-te astăzi!
               </h2>
               <div className='text-center'>
                 <button
                   className='button button-green button-act-now'
                   onClick={gotoRegister}>
-                  Register
+                  Înregistrează-te
                 </button>
               </div>
             </div>
           )}
 
-          <h1 className='heading'>Contact us</h1>
+          <h1 className='heading'>Contactează-ne</h1>
           <div className='contacts'>
             <a href='mailto:academy@gmail.com'>
               <FontAwesomeIcon icon={fa.faEnvelope} />
-              Mail Us
+              Trimite-ne un mail
             </a>
             <a href='https://instagram.com'>
               <FontAwesomeIcon icon={fab.faInstagram} />

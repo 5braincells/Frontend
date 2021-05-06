@@ -152,7 +152,7 @@ export default function RoomSettings() {
                   disableAudio ? 'button-red' : 'button-green'
                 } button-round mr-1 ml-1`}
                 type='button'
-                title={disableAudio ? 'Enable Voice' : 'Disable Voice'}
+                title={disableAudio ? 'Activează audio' : 'Dezactivează audio'}
                 onClick={event => {
                   event?.preventDefault()
                   userVideo.current.srcObject
@@ -179,14 +179,14 @@ export default function RoomSettings() {
               <button
                 className='button button-green join-button ml-1 mr-1'
                 type='submit'>
-                Join Room
+                Alătură-te conferinței
               </button>
               <button
                 className={`button ${
                   disableVideo ? 'button-red' : 'button-green'
                 } button-round mr-1 ml-1`}
                 type='button'
-                title={disableVideo ? 'Enable Video' : 'Disable Video'}
+                title={disableVideo ? 'Activează video' : 'Dezactivează video'}
                 onClick={event => {
                   event?.preventDefault()
                   userVideo.current.srcObject.getTracks().forEach(track => {
@@ -214,7 +214,7 @@ export default function RoomSettings() {
                 className='button'
                 type='button'
                 onClick={() => setSettingsCollapsed(!settingsCollapsed)}>
-                Settings
+                Setări
                 <FontAwesomeIcon
                   color='#fff'
                   className='ml-2'

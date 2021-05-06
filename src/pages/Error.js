@@ -22,16 +22,16 @@ export default function Error() {
   return (
     <Container className='page-container'>
       <h1 style={{ fontSize: '64pt', fontWeight: '100' }}>404</h1>
-      <h1>Page not found</h1>
+      <h1>Pagina nu a fost găsită.</h1>
       <h2 className='mt-4 mb-3' style={{ fontSize: '20pt' }}>
-        You might want to go elsewhere.
+        Poate vrei să navighezi altundeva.
       </h2>
       {jwt ? (
         <button
           className='button button-green'
           style={{ fontSize: '20pt', fontWeight: '200' }}
           onClick={gotoCategories}>
-          Categories
+          Categorii
         </button>
       ) : (
         <div>
@@ -39,13 +39,13 @@ export default function Error() {
             className='button button-green'
             style={{ fontSize: '20pt', fontWeight: '200' }}
             onClick={gotoLanding}>
-            Home
+            Acasă
           </button>
           <button
             className='button button-green ml-3'
             style={{ fontSize: '20pt', fontWeight: '200' }}
             onClick={gotoLogIn}>
-            Log In
+            Conectează-te
           </button>
         </div>
       )}

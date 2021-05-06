@@ -44,7 +44,7 @@ export default function Register() {
 
   return (
     <Container className='page-container'>
-      <h3>Log in to Studyrooms</h3>
+      <h3>Conectează-te pe Studyrooms</h3>
       <br />
       <Form onSubmit={handleSubmit(onSubmit)}>
         <div style={{ maxWidth: '200px', margin: '0 auto' }}>
@@ -52,35 +52,39 @@ export default function Register() {
             <Form.Control
               name='email'
               type='email'
-              placeholder='Email Address'
+              placeholder='Adresă de mail'
               className='textbox'
               ref={register({ required: true })}
             />
             {errors.email && errors.email.type === 'required' && (
-              <Form.Text className='form-error'>This is required</Form.Text>
+              <Form.Text className='form-error'>
+                Acest câmp este obligatoriu
+              </Form.Text>
             )}
           </Form.Group>
           <Form.Group controlId='formPassword'>
             <Form.Control
               name='password'
               type='password'
-              placeholder='Password'
+              placeholder='Parolă'
               className='textbox'
               ref={register({ required: true })}
             />
             {errors.password && errors.password.type === 'required' && (
-              <Form.Text className='form-error'>This is required</Form.Text>
+              <Form.Text className='form-error'>
+                Acest câmp este obligatoriu
+              </Form.Text>
             )}
           </Form.Group>
           <Form.Group>
             <Form.Check
               type='checkbox'
-              label='Remember me'
+              label='Ține-mă minte'
               onChange={handleChange}
             />
           </Form.Group>
           <Button block className='button button-green' type='submit'>
-            Log In
+            Conectează-te
           </Button>
         </div>
         {error && (
@@ -91,9 +95,9 @@ export default function Register() {
       </Form>
       <br />
       <p>
-        Don't have an account?{' '}
+        Nu ai un cont?{' '}
         <Link to='/register' className='custom-a'>
-          Register
+          Înregistrează-te
         </Link>
       </p>
     </Container>

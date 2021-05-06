@@ -14,7 +14,7 @@ export default function Header() {
 
   return (
     <Navbar bg='dark' variant='dark' expand='sm' fixed='top'>
-      <Navbar.Brand style={{padding: '3px 0px 7px 0px', marginRight: '10px'}}>
+      <Navbar.Brand style={{ padding: '3px 0px 7px 0px', marginRight: '10px' }}>
         <Link to='/'>Studyrooms</Link>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls='basic-navbar-nav' />
@@ -22,7 +22,7 @@ export default function Header() {
         <Nav className='mr-auto'>
           {jwt && (
             <Link to='/categories' className='header-link'>
-              Categories
+              Categorii
             </Link>
           )}
         </Nav>
@@ -30,19 +30,19 @@ export default function Header() {
           {jwt ? (
             <>
               <Link to='/profile' className='header-link'>
-                Profile
+                Profil
               </Link>
               <Link to='/' onClick={logOut} className='header-link'>
-                Log Out
+                Deloghează-te
               </Link>
             </>
           ) : (
             <>
               <Link to='/register' className='header-link'>
-                Register
+                Înregistrează-te
               </Link>
               <Link to='/login' className='header-link'>
-                Log In
+                Conectează-te
               </Link>
             </>
           )}

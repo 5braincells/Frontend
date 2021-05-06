@@ -28,7 +28,7 @@ export default function Chatroom({ chatroom }) {
         }}
         className='header-link'
         onClick={handleClick}
-        title='Go Back'>
+        title='Înapoi'>
         <FontAwesomeIcon color='#fff' icon={Icons.faArrowLeft} size='lg' />
       </button>
       <img
@@ -45,7 +45,7 @@ export default function Chatroom({ chatroom }) {
         }}
         className='header-link mr-3 ml-auto'
         onClick={createCall}
-        title='Start Video Call'>
+        title='Începe conferință video'>
         <FontAwesomeIcon color='#fff' icon={Icons.faVideo} size='lg' />
       </button>
     </div>
