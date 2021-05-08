@@ -2,7 +2,7 @@ body,
 input,
 button,
 .modal-dialog {
-  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, 'Noto Sans',
     'Liberation Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol', 'Noto Color Emoji';
   font-size: 11pt;

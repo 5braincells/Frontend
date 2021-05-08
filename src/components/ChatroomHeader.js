@@ -31,13 +31,9 @@ export default function Chatroom({ chatroom }) {
         title='Înapoi'>
         <FontAwesomeIcon color='#fff' icon={Icons.faArrowLeft} size='lg' />
       </button>
-      <img
-        src={chatroom.picture}
-        alt=''
-        width='40'
-        height='40'
-        style={{ borderRadius: '100px' }}
-      />
+      <svg style={{ width: '40px', height: '40px' }} viewBox='0 0 24 24'>
+        <path fill='currentColor' d={chatroom.picture} />
+      </svg>
       <span className='chatroom-header-title'>{chatroom.name}</span>
       <button
         style={{
