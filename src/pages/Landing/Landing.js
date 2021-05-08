@@ -70,9 +70,6 @@ function Landing() {
             <Col sm={6} lg={3}>
               <div className='card card-people'>
                 <div>
-                  <img className='user-img' src='default-avatar.png' alt='' />
-                </div>
-                <div>
                   <h3>Conectăm elevii</h3>
                 </div>
                 <div>
@@ -84,9 +81,6 @@ function Landing() {
             </Col>
             <Col sm={6} lg={3}>
               <div className='card card-people'>
-                <div>
-                  <img className='user-img' src='default-avatar.png' alt='' />
-                </div>
                 <div>
                   <h3>Sporim performanțele</h3>
                 </div>
@@ -100,9 +94,6 @@ function Landing() {
             <Col sm={6} lg={3}>
               <div className='card card-people'>
                 <div>
-                  <img className='user-img' src='default-avatar.png' alt='' />
-                </div>
-                <div>
                   <h3>Platformă națională</h3>
                 </div>
                 <div>
@@ -114,9 +105,6 @@ function Landing() {
             </Col>
             <Col sm={6} lg={3}>
               <div className='card card-people'>
-                <div>
-                  <img className='user-img' src='default-avatar.png' alt='' />
-                </div>
                 <div>
                   <h3>Asigurăm confidențialitate</h3>
                 </div>
@@ -252,7 +240,7 @@ function Landing() {
                   <h3>Ștefan Turcu</h3>
                   <h5>Mentor</h5>
                 </div>
-                <div>?</div>
+                <div>Ghidul nostru în dezvoltarea aplicației</div>
                 <div className='bottom'></div>
               </div>
             </Col>

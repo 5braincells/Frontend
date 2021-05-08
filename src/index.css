@@ -2,9 +2,8 @@ body,
 input,
 button,
 .modal-dialog {
-  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, 'Noto Sans',
-    'Liberation Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-    'Segoe UI Symbol', 'Noto Color Emoji';
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica', Arial, 'Noto Sans', 'Liberation Sans', sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji' !important;
   font-size: 11pt;
 }
 
@@ -73,11 +72,7 @@ a:hover {
   border: none !important;
   box-shadow: 0px 0px 12px #22262a !important;
   background-color: #5c6870 !important;
-  background-image: linear-gradient(
-    to bottom,
-    transparent,
-    rgba(0, 0, 0, 0.25)
-  ) !important;
+  background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.25)) !important;
   border-radius: 20px;
   padding: 6px 16px;
   transition: all 0.25s;
