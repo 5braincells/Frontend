@@ -30,32 +30,32 @@ export default function Profile() {
 
   return (
     <Container className='page-container'>
-      <h1 className='mb-3'>Edit Profile</h1>
+      <h1 className='mb-3'>Editează profilul</h1>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Form.Group controlId='formLastName'>
-          <Form.Label>Last Name</Form.Label>
+          <Form.Label>Nume</Form.Label>
           <Form.Control
             name='lastName'
             type='text'
             defaultValue={user.lastName}
-            placeholder='Last name'
+            placeholder='Nume'
             className='textbox'
             ref={register()}
           />
         </Form.Group>
         <Form.Group controlId='formFirstName'>
-          <Form.Label>First Name</Form.Label>
+          <Form.Label>Prenume</Form.Label>
           <Form.Control
             name='firstName'
             type='text'
             defaultValue={user.firstName}
-            placeholder='First name'
+            placeholder='Prenume'
             className='textbox'
             ref={register()}
           />
         </Form.Group>
         <Form.Group controlId='formGrade'>
-          <Form.Label>Grade</Form.Label>
+          <Form.Label>Clasa</Form.Label>
           <Form.Control
             name='grade'
             as='select'
@@ -69,9 +69,9 @@ export default function Profile() {
           </Form.Control>
         </Form.Group>
         <Button block className='button button-green' type='submit'>
-          Save
+          Salvează
         </Button>
       </Form>
     </Container>
-  );
+  )
 }

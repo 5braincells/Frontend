@@ -27,22 +27,24 @@ export default function CustomRoomModal({ show, onHide, handleclosebutton }) {
     <Modal show={show} onHide={() => onHide}>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Header>
-          <Modal.Title>Create a custom studyroom</Modal.Title>
+          <Modal.Title>Creează un studyroom custom</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
           <Form.Group controlId='formStudyroomName'>
-            <Form.Label>Studyroom Name</Form.Label>
+            <Form.Label>Numele studyroom-ului</Form.Label>
             <Form.Control
               name='studyroomName'
               type='text'
-              placeholder='Enter studyroom name'
+              placeholder='Numele studyroom-ului'
               className='textbox'
               ref={register({ required: true, validate: hasSpaces })}
             />
             {errors.studyroomName &&
               errors.studyroomName.type === 'required' && (
-                <Form.Text className='form-error'>This is required</Form.Text>
+                <Form.Text className='form-error'>
+                  Acest câmp este obligatoriu
+                </Form.Text>
               )}
             {errors.studyroomName &&
               errors.studyroomName.type === 'validate' && (
@@ -55,10 +57,10 @@ export default function CustomRoomModal({ show, onHide, handleclosebutton }) {
 
         <Modal.Footer>
           <button className='button' type='reset' onClick={handleclosebutton}>
-            Cancel
+            Anulează
           </button>
           <button className='button button-green' type='submit'>
-            Join
+            Alătură-te
           </button>
         </Modal.Footer>
       </Form>

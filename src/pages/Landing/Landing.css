@@ -5,9 +5,9 @@ body {
   max-width: 100% !important;
   width: 100%;
   overflow-x: hidden;
-  font-family: 'Roboto', 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans',
-    'Liberation Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-    'Segoe UI Symbol', 'Noto Color Emoji', sans-serif;
+  font-family: 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans',
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji', sans-serif;
 }
 
 code {
@@ -16,14 +16,14 @@ code {
 }
 
 p {
-  font-family: 'Roboto', 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans',
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, 'Noto Sans',
     'Liberation Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol', 'Noto Color Emoji', cursive !important;
   font-size: 1.1em;
 }
 
 h1 {
-  font-family: 'Roboto', 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans',
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, 'Noto Sans',
     'Liberation Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol', 'Noto Color Emoji', cursive !important;
   font-size: 2.5em;
@@ -31,21 +31,21 @@ h1 {
 }
 
 h2 {
-  font-family: 'Roboto', 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans',
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, 'Noto Sans',
     'Liberation Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol', 'Noto Color Emoji', cursive !important;
   font-weight: 300;
 }
 
 h3 {
-  font-family: 'Roboto', 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans',
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, 'Noto Sans',
     'Liberation Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol', 'Noto Color Emoji', cursive !important;
   font-weight: 300;
 }
 
 h5 {
-  font-family: 'Roboto', 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans',
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, 'Noto Sans',
     'Liberation Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol', 'Noto Color Emoji', cursive !important;
   color: #ccc;
@@ -90,6 +90,7 @@ h5 {
   margin: 0 auto;
   margin-top: -60px;
   margin-bottom: 10px;
+  border-radius: 100%;
 }
 
 .card-fill {
@@ -101,6 +102,7 @@ h5 {
   padding: 20px 10px;
   box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.3);
   margin-top: 10px;
+  height: calc(100% - 10px);
 }
 .card-fill:hover {
   color: white;
@@ -164,6 +166,7 @@ h5 {
 }
 
 .title-slogan {
+  font-size: 2rem;
   text-align: center;
   margin-top: 8px;
   margin-bottom: 16px;

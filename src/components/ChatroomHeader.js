@@ -28,16 +28,12 @@ export default function Chatroom({ chatroom }) {
         }}
         className='header-link'
         onClick={handleClick}
-        title='Go Back'>
+        title='Înapoi'>
         <FontAwesomeIcon color='#fff' icon={Icons.faArrowLeft} size='lg' />
       </button>
-      <img
-        src={chatroom.picture}
-        alt=''
-        width='40'
-        height='40'
-        style={{ borderRadius: '100px' }}
-      />
+      <svg style={{ width: '40px', height: '40px' }} viewBox='0 0 24 24'>
+        <path fill='currentColor' d={chatroom.picture} />
+      </svg>
       <span className='chatroom-header-title'>{chatroom.name}</span>
       <button
         style={{
@@ -45,7 +41,7 @@ export default function Chatroom({ chatroom }) {
         }}
         className='header-link mr-3 ml-auto'
         onClick={createCall}
-        title='Start Video Call'>
+        title='Începe conferință video'>
         <FontAwesomeIcon color='#fff' icon={Icons.faVideo} size='lg' />
       </button>
     </div>

@@ -59,30 +59,34 @@ export default function Register() {
           </Button>
         </Modal.Footer>
       </Modal>
-      <h3>Create your Studyrooms account</h3>
+      <h3>Creează-ți contul tău pe Studyrooms</h3>
       <br />
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Form.Row>
           <Form.Group as={Col} xs={12} sm={6} controlId='formFirstName'>
             <Form.Control
               name='firstName'
-              placeholder='First name'
+              placeholder='Prenume'
               className='textbox'
               ref={register({ required: true })}
             />
             {errors.firstName && errors.firstName.type === 'required' && (
-              <Form.Text className='form-error'>This is required</Form.Text>
+              <Form.Text className='form-error'>
+                Acest câmp este obligatoriu
+              </Form.Text>
             )}
           </Form.Group>
           <Form.Group as={Col} xs={12} sm={6} controlId='formLastName'>
             <Form.Control
               name='lastName'
-              placeholder='Last name'
+              placeholder='Nume'
               className='textbox'
               ref={register({ required: true })}
             />
             {errors.lastName && errors.lastName.type === 'required' && (
-              <Form.Text className='form-error'>This is required</Form.Text>
+              <Form.Text className='form-error'>
+                Acest câmp este obligatoriu
+              </Form.Text>
             )}
           </Form.Group>
         </Form.Row>
@@ -104,12 +108,14 @@ export default function Register() {
           <Form.Control
             name='email'
             type='email'
-            placeholder='Email Address'
+            placeholder='Adresă de mail'
             className='textbox'
             ref={register({ required: true })}
           />
           {errors.email && errors.email.type === 'required' && (
-            <Form.Text className='form-error'>This is required</Form.Text>
+            <Form.Text className='form-error'>
+              Acest câmp este obligatoriu
+            </Form.Text>
           )}
         </Form.Group>
         <Form.Row>
@@ -117,29 +123,33 @@ export default function Register() {
             <Form.Control
               name='password'
               type={type}
-              placeholder='Password'
+              placeholder='Parolă'
               className='textbox'
               ref={register({ required: true })}
               onChange={event => setPassword(event.target.value)}
             />
             {errors.password && errors.password.type === 'required' && (
-              <Form.Text className='form-error'>This is required</Form.Text>
+              <Form.Text className='form-error'>
+                Acest câmp este obligatoriu
+              </Form.Text>
             )}
           </Form.Group>
           <Form.Group as={Col} xs={12} sm={6} controlId='formPassword2'>
             <Form.Control
               name='password2'
               type={type}
-              placeholder='Confirm'
+              placeholder='Confirmă parola'
               className='textbox'
               ref={register({ required: true, validate: arePasswordsTheSame })}
             />
             {errors.password2 && errors.password2.type === 'required' && (
-              <Form.Text className='form-error'>This is required</Form.Text>
+              <Form.Text className='form-error'>
+                Acest câmp este obligatoriu
+              </Form.Text>
             )}
             {errors.password2 && errors.password2.type === 'validate' && (
               <Form.Text className='form-error'>
-                The passwords must be the same
+                Parolele trebuie să fie identice
               </Form.Text>
             )}
           </Form.Group>
@@ -147,12 +157,12 @@ export default function Register() {
         <Form.Group controlId='formBasicCheckbox'>
           <Form.Check
             type='checkbox'
-            label={'Show password'}
+            label={'Afișează parola'}
             onClick={showHide}
           />
         </Form.Group>
         <Button block className='button button-green' type='submit'>
-          Register
+          Înregistrează-te
         </Button>
         {error && (
           <Form.Text className='form-error text-center'>
@@ -162,9 +172,9 @@ export default function Register() {
       </Form>
       <br />
       <p>
-        Already have an account?{' '}
+        Ai deja un cont?{' '}
         <Link to='/login' className='custom-a'>
-          Log In
+          Conectează-te
         </Link>
       </p>
     </Container>

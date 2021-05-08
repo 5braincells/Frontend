@@ -199,7 +199,7 @@ export default function Chatroom() {
           <Dropdown as={ButtonGroup}>
             <Dropdown.Toggle
               className='button button-round dropdown-toggle'
-              title='Attachments'>
+              title='Atașamente'>
               <FontAwesomeIcon
                 style={{ paddingRight: '2px' }}
                 color='#fff'
@@ -266,7 +266,7 @@ export default function Chatroom() {
           </Dropdown>
           <Form.Control
             className='textbox message-input'
-            placeholder='Send a message'
+            placeholder='Trimite un mesaj'
             aria-label='message'
             value={message}
             onChange={data => setMessage(data.target.value)}

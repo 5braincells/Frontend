@@ -47,28 +47,25 @@ function Landing() {
         <div className='page-content'>
           <div>
             <h1 className='title-main'>Studyrooms</h1>
-            <p className='title-slogan'>
-              * TODO: Insert good marketing slogan here *
-            </p>
+            <p className='title-slogan'>Hai pe Studyrooms!</p>
           </div>
 
           {jwt && (
             <div>
-              <h2 className='text-act-now'>
-                You're already logged in, you might want to go to the
-                Categories.
-              </h2>
+              <h4 className='text-act-now'>
+                Ești deja conectat, poate dorești sa navighezi către Categorii.
+              </h4>
               <div className='text-center'>
                 <button
                   className='button button-green button-act-now'
                   onClick={gotoCategories}>
-                  Categories
+                  Categorii
                 </button>
               </div>
             </div>
           )}
 
-          <h1 className='heading'>What we do</h1>
+          <h1 className='heading'>Ce facem noi</h1>
           <Row>
             <Col sm={6} lg={3}>
               <div className='card card-people'>
@@ -76,15 +73,11 @@ function Landing() {
                   <img className='user-img' src='default-avatar.png' alt='' />
                 </div>
                 <div>
-                  <h3>John Doe</h3>
-                  <h5>Dummy</h5>
+                  <h3>Conectăm elevii</h3>
                 </div>
                 <div>
-                  Extremity sweetness difficult behaviour he of. On disposal of
-                  as landlord horrible. Children me laughing we prospect
-                  answered followed. At it went is song that held help face. Led
-                  ask possible mistress relation elegance eat likewise debating.
-                  By message or am nothing amongst chiefly address.
+                  Oferim un mediu sigur și primitor în care elevii se pot ajuta
+                  reciproc.
                 </div>
                 <div className='bottom'></div>
               </div>
@@ -95,15 +88,11 @@ function Landing() {
                   <img className='user-img' src='default-avatar.png' alt='' />
                 </div>
                 <div>
-                  <h3>John Doe</h3>
-                  <h5>Dummy</h5>
+                  <h3>Sporim performanțele</h3>
                 </div>
                 <div>
-                  Extremity sweetness difficult behaviour he of. On disposal of
-                  as landlord horrible. Children me laughing we prospect
-                  answered followed. At it went is song that held help face. Led
-                  ask possible mistress relation elegance eat likewise debating.
-                  By message or am nothing amongst chiefly address.
+                  Prin intermediul platformei și al colaborării dintre elevi,
+                  aceștia pot să-și îmbunătățească performanțele școlare.
                 </div>
                 <div className='bottom'></div>
               </div>
@@ -114,15 +103,11 @@ function Landing() {
                   <img className='user-img' src='default-avatar.png' alt='' />
                 </div>
                 <div>
-                  <h3>John Doe</h3>
-                  <h5>Dummy</h5>
+                  <h3>Platformă națională</h3>
                 </div>
                 <div>
-                  Extremity sweetness difficult behaviour he of. On disposal of
-                  as landlord horrible. Children me laughing we prospect
-                  answered followed. At it went is song that held help face. Led
-                  ask possible mistress relation elegance eat likewise debating.
-                  By message or am nothing amongst chiefly address.
+                  Indiferent de oraș sau liceu, elevii pot socializa fără
+                  probleme.
                 </div>
                 <div className='bottom'></div>
               </div>
@@ -133,65 +118,44 @@ function Landing() {
                   <img className='user-img' src='default-avatar.png' alt='' />
                 </div>
                 <div>
-                  <h3>John Doe</h3>
-                  <h5>Dummy</h5>
+                  <h3>Asigurăm confidențialitate</h3>
                 </div>
                 <div>
-                  Extremity sweetness difficult behaviour he of. On disposal of
-                  as landlord horrible. Children me laughing we prospect
-                  answered followed. At it went is song that held help face. Led
-                  ask possible mistress relation elegance eat likewise debating.
-                  By message or am nothing amongst chiefly address.
+                  Prin intermediul tehinicilor moderne de securitate
+                  cibernetică, asigurăm confidențialitatea totală pentru toți
+                  utilizatorii platformei.
                 </div>
                 <div className='bottom'></div>
               </div>
             </Col>
           </Row>
 
-          <h1 className='heading'>Features</h1>
+          <h1 className='heading'>Feature-uri</h1>
           <Row>
             <Col sm={4}>
               <div className='card-fill'>
-                <h2> Great for any student </h2>
+                <h2> Mesaje </h2>
                 <p className='mt-auto mb-auto'>
-                  We offer help for all high school students
-                </p>
-                <p className='mt-auto mb-auto'>
-                  Users get categorized so they don't mix up
-                </p>
-                <p className='mt-auto mb-auto'>Blah blah blah</p>
-                <p className='mt-auto mb-auto'>
-                  Another advantage idk ¯\_(ツ)_/¯
+                  Permitem utilizatorilor să trimită mesaje de tip text,
+                  fișiere, gif-uri și poze.
                 </p>
               </div>
             </Col>
             <Col sm={4}>
               <div className='card-fill'>
-                <h2> Great for any student </h2>
+                <h2> Conferințe video </h2>
                 <p className='mt-auto mb-auto'>
-                  We offer help for all high school students
-                </p>
-                <p className='mt-auto mb-auto'>
-                  Users get categorized so they don't mix up
-                </p>
-                <p className='mt-auto mb-auto'>Blah blah blah</p>
-                <p className='mt-auto mb-auto'>
-                  Another advantage idk ¯\_(ツ)_/¯
+                  Elevii pot iniția conferințe video pentru o comunicare mai
+                  interactivă și simplă.
                 </p>
               </div>
             </Col>
             <Col sm={4}>
               <div className='card-fill'>
-                <h2> Great for any student </h2>
+                <h2> Studyroom-uri custom </h2>
                 <p className='mt-auto mb-auto'>
-                  We offer help for all high school students
-                </p>
-                <p className='mt-auto mb-auto'>
-                  Users get categorized so they don't mix up
-                </p>
-                <p className='mt-auto mb-auto'>Blah blah blah</p>
-                <p className='mt-auto mb-auto'>
-                  Another advantage idk ¯\_(ツ)_/¯
+                  Oferim posibilitatea de a creea studyroom-uri custom pentru a
+                  putea comunica cu un grup restrâns de persoane.
                 </p>
               </div>
             </Col>
@@ -209,7 +173,9 @@ function Landing() {
                   </VisibilitySensor>
                 )}
               </CountUp>
-              <h3 className='ml-auto mr-auto text-center'>Registered Users</h3>
+              <h3 className='ml-auto mr-auto text-center'>
+                Utilizatori Înregistrați
+              </h3>
             </Col>
             <Col md={4} className='mt-5'>
               <CountUp end={data.messages} duration={3.75}>
@@ -223,28 +189,25 @@ function Landing() {
                 )}
               </CountUp>
               <h3 className='ml-auto mr-auto text-center'>
-                Total Messages Sent
+                Total Mesaje Trimise
               </h3>
             </Col>
           </Row>
 
-          <h1 className='heading'>The Team</h1>
+          <h1 className='heading'>Echipa</h1>
           <Row className='justify-content-center'>
             <Col sm={6} md={4}>
               <div className='card card-people'>
                 <div>
-                  <img className='user-img' src='default-avatar.png' alt='' />
+                  <img className='user-img' src='vlad.jpg' alt='Vlad' />
                 </div>
                 <div>
-                  <h3>John Doe</h3>
-                  <h5>Dummy</h5>
+                  <h3>Vlad Cainamisir</h3>
+                  <h5>Backend</h5>
                 </div>
                 <div>
-                  Extremity sweetness difficult behaviour he of. On disposal of
-                  as landlord horrible. Children me laughing we prospect
-                  answered followed. At it went is song that held help face. Led
-                  ask possible mistress relation elegance eat likewise debating.
-                  By message or am nothing amongst chiefly address.
+                  Elev la Colegiul Național de Informatică “Tudor Vianu”
+                  București
                 </div>
                 <div className='bottom'></div>
               </div>
@@ -255,15 +218,11 @@ function Landing() {
                   <img className='user-img' src='default-avatar.png' alt='' />
                 </div>
                 <div>
-                  <h3>John Doe</h3>
-                  <h5>Dummy</h5>
+                  <h3>Alex Mitreanu</h3>
+                  <h5>Frontend</h5>
                 </div>
                 <div>
-                  Extremity sweetness difficult behaviour he of. On disposal of
-                  as landlord horrible. Children me laughing we prospect
-                  answered followed. At it went is song that held help face. Led
-                  ask possible mistress relation elegance eat likewise debating.
-                  By message or am nothing amongst chiefly address.
+                  Elev la Liceul Teoretic de Inforamtică “Grigore Moisil” Iași
                 </div>
                 <div className='bottom'></div>
               </div>
@@ -271,18 +230,15 @@ function Landing() {
             <Col sm={6} md={4}>
               <div className='card card-people'>
                 <div>
-                  <img className='user-img' src='default-avatar.png' alt='' />
+                  <img className='user-img' src='radu.jpg' alt='' />
                 </div>
                 <div>
-                  <h3>John Doe</h3>
-                  <h5>Dummy</h5>
+                  <h3>Radu Mîrzoca</h3>
+                  <h5>UI/UX Designer</h5>
                 </div>
                 <div>
-                  Extremity sweetness difficult behaviour he of. On disposal of
-                  as landlord horrible. Children me laughing we prospect
-                  answered followed. At it went is song that held help face. Led
-                  ask possible mistress relation elegance eat likewise debating.
-                  By message or am nothing amongst chiefly address.
+                  Elev la Liceul Teoretic de Inforamtică “Grigore Moisil”
+                  Timișoara
                 </div>
                 <div className='bottom'></div>
               </div>
@@ -290,38 +246,13 @@ function Landing() {
             <Col sm={6} md={4}>
               <div className='card card-people'>
                 <div>
-                  <img className='user-img' src='default-avatar.png' alt='' />
+                  <img className='user-img' src='stefan.jpg' alt='' />
                 </div>
                 <div>
-                  <h3>John Doe</h3>
-                  <h5>Dummy</h5>
+                  <h3>Ștefan Turcu</h3>
+                  <h5>Mentor</h5>
                 </div>
-                <div>
-                  Extremity sweetness difficult behaviour he of. On disposal of
-                  as landlord horrible. Children me laughing we prospect
-                  answered followed. At it went is song that held help face. Led
-                  ask possible mistress relation elegance eat likewise debating.
-                  By message or am nothing amongst chiefly address.
-                </div>
-                <div className='bottom'></div>
-              </div>
-            </Col>
-            <Col sm={6} md={4}>
-              <div className='card card-people'>
-                <div>
-                  <img className='user-img' src='default-avatar.png' alt='' />
-                </div>
-                <div>
-                  <h3>John Doe</h3>
-                  <h5>Dummy</h5>
-                </div>
-                <div>
-                  Extremity sweetness difficult behaviour he of. On disposal of
-                  as landlord horrible. Children me laughing we prospect
-                  answered followed. At it went is song that held help face. Led
-                  ask possible mistress relation elegance eat likewise debating.
-                  By message or am nothing amongst chiefly address.
-                </div>
+                <div>?</div>
                 <div className='bottom'></div>
               </div>
             </Col>
@@ -330,23 +261,23 @@ function Landing() {
           {!jwt && (
             <div>
               <h2 className='text-act-now'>
-                So, what do you think? Join us today!
+                Deci, ce crezi? Înregistrează-te astăzi!
               </h2>
               <div className='text-center'>
                 <button
                   className='button button-green button-act-now'
                   onClick={gotoRegister}>
-                  Register
+                  Înregistrează-te
                 </button>
               </div>
             </div>
           )}
 
-          <h1 className='heading'>Contact us</h1>
+          <h1 className='heading'>Contactează-ne</h1>
           <div className='contacts'>
             <a href='mailto:academy@gmail.com'>
               <FontAwesomeIcon icon={fa.faEnvelope} />
-              Mail Us
+              Trimite-ne un mail
             </a>
             <a href='https://instagram.com'>
               <FontAwesomeIcon icon={fab.faInstagram} />
