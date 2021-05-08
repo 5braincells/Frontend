@@ -8,6 +8,17 @@ import * as Icons from '@fortawesome/free-solid-svg-icons'
 export default function Chatroom({ chatroom }) {
   const history = useHistory()
 
+  const categoryID = [
+    'matematica',
+    'informatica',
+    'biologie',
+    'chimie',
+    'fizica',
+    'economie',
+    'geografie',
+    'romana',
+  ]
+
   const user = JSON.parse(useSelector(state => state?.jwt?.user))
 
   const handleClick = event => {
@@ -17,7 +28,12 @@ export default function Chatroom({ chatroom }) {
 
   const createCall = event => {
     event.preventDefault()
-    history.push(`/room/${chatroom.id + user.grade}`)
+    history.push(
+      `/room/${
+        chatroom.id +
+        (categoryID.find(id => chatroom.id === id) ? user.grade : '')
+      }`
+    )
   }
 
   return (
